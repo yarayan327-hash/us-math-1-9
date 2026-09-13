@@ -1,0 +1,6 @@
+{
+  "name": "Visual Math Trial Class",
+  "description": "Bilingual teacher-led interactive mathematics trial-class courseware featuring Unit Bar structural thinking for US Grades 1–9.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
