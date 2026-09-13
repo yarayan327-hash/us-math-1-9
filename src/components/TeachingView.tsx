@@ -4,6 +4,8 @@ import { ModelStage } from './visuals/ModelStage';
 import { ChallengeScreen } from './ChallengeScreen';
 import { ChevronLeft, ChevronRight, HelpCircle, Layers, CheckCircle2, Sparkles, BookOpen, Lock } from 'lucide-react';
 import { LevelBackground } from './LevelBackground';
+import { StepPresentationLayer } from './StepPresentationLayer';
+import { getTeachingVisualState } from '../utils/visualTheme';
 
 interface TeachingViewProps {
   stage: CourseStage;
@@ -40,6 +42,7 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
   const currentStep: VisualStep = currentActivity.steps[stepIndex];
   const isFinalStepOfActivity = stepIndex >= currentActivity.steps.length - 1;
   const isFinalActivityOfStage = activityIndex >= stage.activities.length - 1;
+  const visualState = getTeachingVisualState(currentStep, stepIndex, currentActivity.steps.length);
 
   // Challenge screen control: Page 1 (Full Problem Display) vs Page 2 (Visual Modeling Steps)
   // Each level and problem begins on Page 1 (Full Problem Display)
@@ -151,7 +154,7 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
       {/* Main 16:9 Teaching Stage Canvas */}
       <main className="flex-1 w-full p-4 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-5 overflow-hidden min-h-0 relative z-10">
         {/* Left Instruction Panel: ~33% (4 cols in 12-col grid) */}
-        <div className="lg:col-span-4 vm-surface vm-enter rounded-3xl p-5 flex flex-col justify-between overflow-hidden h-full">
+        <div className={`lg:col-span-4 vm-surface vm-enter vm-step-panel vm-step-panel--${visualState} rounded-3xl p-5 flex flex-col justify-between overflow-hidden h-full`}>
           {/* 1. STICKY TOP QUESTION AREA - Never scrolls away */}
           <div className="shrink-0 pb-3 border-b border-gray-100 space-y-2">
             <div className="flex items-center justify-between">
@@ -187,12 +190,12 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
                 <div
                   key={`step-card-${idx}`}
                   ref={isCurrent ? activeStepRef : null}
-                  className={`p-3.5 rounded-2xl text-xs sm:text-sm transition-all duration-200 ${
+                    className={`p-3.5 rounded-2xl text-xs sm:text-sm transition-all duration-200 ${
                     isCurrent
-                      ? 'bg-[#26B7FF]/10 border-2 border-[#26B7FF] text-[#333333] font-semibold shadow-xs ring-1 ring-[#26B7FF]/20'
+                      ? 'vm-current-step bg-[#26B7FF]/10 border-2 border-[#26B7FF] text-[#333333] font-semibold shadow-xs ring-1 ring-[#26B7FF]/20'
                       : isCompleted
-                        ? 'bg-[#F6F6F6] text-[#666666] border border-gray-200/60 opacity-80'
-                        : 'bg-gray-50/40 border border-dashed border-gray-200 text-gray-400 opacity-40'
+                        ? 'vm-completed-step bg-[#F6F6F6] text-[#666666] border border-gray-200/60 opacity-80'
+                        : 'vm-future-step bg-gray-50/40 border border-dashed border-gray-200 text-gray-400 opacity-35'
                   }`}
                 >
                   <div className="flex items-start gap-2.5">
@@ -216,11 +219,9 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
                         {language === 'ZH' ? step.instructionZH : step.instructionEN}
                       </p>
                     ) : (
-                      <div className="flex items-center gap-1.5 text-gray-400 py-0.5 select-none">
+                      <div className="flex items-center gap-1.5 text-gray-400 py-0.5 select-none" aria-hidden="true">
                         <Lock size={12} className="shrink-0 text-gray-400" />
-                        <span className="text-xs font-medium tracking-wide">
-                          {language === 'ZH' ? `第 ${idx + 1} 步 · 点击下方“显示下一步”解锁` : `Step ${idx + 1} · Locked (Advance to reveal)`}
-                        </span>
+                        <span className="vm-locked-line" />
                       </div>
                     )}
                   </div>
@@ -276,7 +277,15 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
         </div>
 
         {/* Right Visual Stage: ~67% (8 cols in 12-col grid) - FIXED COORDINATES */}
-        <div className="lg:col-span-8 vm-surface vm-enter rounded-3xl p-3 sm:p-4 flex flex-col justify-between overflow-hidden min-h-0 relative">
+        <div className={`lg:col-span-8 vm-surface vm-enter vm-model-shell vm-model-shell--${visualState} rounded-3xl p-3 sm:p-4 flex flex-col justify-between overflow-hidden min-h-0 relative`}>
+          <StepPresentationLayer
+            stage={stage}
+            activity={currentActivity}
+            currentStep={currentStep}
+            stepIndex={stepIndex}
+            totalSteps={currentActivity.steps.length}
+            language={language}
+          />
           <ModelStage
             activity={currentActivity}
             currentStep={currentStep}

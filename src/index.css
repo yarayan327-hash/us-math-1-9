@@ -200,6 +200,484 @@ button:focus-visible {
   border: 1px solid var(--border-blue-soft);
 }
 
+.vm-intro-card {
+  min-height: min(58vh, 520px);
+}
+
+.vm-intro-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.38;
+  background-image:
+    linear-gradient(90deg, rgba(38, 183, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(51, 51, 51, 0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at var(--motif-x, 82%) var(--motif-y, 24%), black, transparent 46%);
+}
+
+.vm-intro-hero {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  width: clamp(5.5rem, 13vw, 9.5rem);
+  height: clamp(5.5rem, 13vw, 9.5rem);
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.92), rgba(234, 247, 255, 0.68)),
+    var(--light-blue);
+  border: 1px solid var(--border-blue-soft);
+  box-shadow: 0 16px 38px rgba(38, 183, 255, 0.13);
+}
+
+.vm-intro-accent {
+  position: absolute;
+  z-index: 1;
+  width: clamp(2.5rem, 5vw, 4rem);
+  height: clamp(2.5rem, 5vw, 4rem);
+  object-fit: contain;
+  opacity: 0.76;
+  filter: drop-shadow(0 10px 16px rgba(51, 51, 51, 0.1));
+}
+
+.vm-intro-motif {
+  position: absolute;
+  z-index: 0;
+  inset: auto 2rem 2rem auto;
+  width: 11rem;
+  height: 4rem;
+  opacity: 0.35;
+  border-top: 2px dashed rgba(38, 183, 255, 0.35);
+  border-right: 2px dashed rgba(253, 231, 0, 0.7);
+  border-radius: 0 24px 0 0;
+}
+
+.vm-intro-content {
+  max-width: var(--intro-content-width, 100%);
+}
+
+.vm-intro-card--hero-left {
+  --motif-x: 18%;
+  --motif-y: 18%;
+  padding-left: clamp(1.5rem, 17vw, 13rem);
+}
+
+.vm-intro-card--hero-left .vm-intro-hero {
+  left: clamp(1.25rem, 4vw, 3rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vm-intro-card--hero-left .vm-intro-accent {
+  left: clamp(5rem, 12vw, 11rem);
+  bottom: 2rem;
+}
+
+.vm-intro-card--hero-right {
+  --motif-x: 84%;
+  --motif-y: 18%;
+  --intro-content-width: calc(100% - clamp(6rem, 15vw, 11rem));
+  padding-right: clamp(1.5rem, 17vw, 13rem);
+}
+
+.vm-intro-card--hero-right .vm-intro-hero {
+  right: clamp(1.25rem, 4vw, 3rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vm-intro-card--hero-right .vm-intro-accent {
+  right: clamp(5rem, 12vw, 11rem);
+  bottom: 2rem;
+}
+
+.vm-intro-card--center-stage {
+  text-align: center;
+}
+
+.vm-intro-card--center-stage .vm-intro-content,
+.vm-intro-card--center-stage .space-y-4 {
+  margin-inline: auto;
+}
+
+.vm-intro-card--center-stage .vm-intro-hero {
+  right: 1.5rem;
+  top: 1.35rem;
+  width: clamp(4rem, 9vw, 6.75rem);
+  height: clamp(4rem, 9vw, 6.75rem);
+}
+
+.vm-intro-card--center-stage .vm-intro-accent {
+  left: 1.75rem;
+  bottom: 1.5rem;
+}
+
+.vm-intro-card--diagonal-story {
+  --motif-x: 76%;
+  --motif-y: 74%;
+  padding-right: clamp(1.5rem, 14vw, 10rem);
+}
+
+.vm-intro-card--diagonal-story .vm-intro-hero {
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.vm-intro-card--diagonal-story .vm-intro-accent {
+  right: clamp(7rem, 15vw, 12rem);
+  top: 2rem;
+}
+
+.vm-intro-card--split-story-math {
+  --motif-x: 88%;
+  --motif-y: 50%;
+  --intro-content-width: calc(100% - clamp(6rem, 16vw, 12rem));
+  padding-right: clamp(1.5rem, 18vw, 14rem);
+}
+
+.vm-intro-card--split-story-math .vm-intro-hero {
+  right: 2rem;
+  top: 2rem;
+}
+
+.vm-intro-card--split-story-math .vm-intro-accent {
+  right: 2.25rem;
+  bottom: 2rem;
+}
+
+.vm-theme--game {
+  --theme-accent: #26B7FF;
+  --theme-soft: rgba(38, 183, 255, 0.13);
+}
+
+.vm-theme--recipe,
+.vm-theme--smoothie {
+  --theme-accent: #FDE700;
+  --theme-soft: rgba(253, 231, 0, 0.2);
+}
+
+.vm-theme--school {
+  --theme-accent: #26B7FF;
+  --theme-soft: rgba(38, 183, 255, 0.1);
+}
+
+.vm-theme--shopping,
+.vm-theme--tickets,
+.vm-theme--money {
+  --theme-accent: #333333;
+  --theme-soft: rgba(51, 51, 51, 0.08);
+}
+
+.vm-theme--candy,
+.vm-theme--cards,
+.vm-theme--logic {
+  --theme-accent: #26B7FF;
+  --theme-soft: rgba(38, 183, 255, 0.09);
+}
+
+.vm-intro-card .vm-intro-motif {
+  background: radial-gradient(circle, var(--theme-soft, rgba(38, 183, 255, 0.1)) 2px, transparent 3px);
+  background-size: 22px 22px;
+}
+
+.vm-step-panel {
+  position: relative;
+}
+
+.vm-step-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--primary-blue);
+  opacity: 0.2;
+}
+
+.vm-step-panel--discover::before,
+.vm-step-panel--calculate::before,
+.vm-step-panel--answer::before {
+  opacity: 0.7;
+}
+
+.vm-current-step {
+  position: relative;
+  overflow: hidden;
+}
+
+.vm-current-step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(38, 183, 255, 0.1), transparent 45%);
+}
+
+.vm-completed-step {
+  filter: saturate(0.85);
+}
+
+.vm-future-step {
+  min-height: 48px;
+}
+
+.vm-locked-line {
+  display: block;
+  width: min(62%, 9rem);
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(156, 163, 175, 0.28);
+}
+
+.vm-model-shell {
+  isolation: isolate;
+}
+
+.vm-model-shell > :not(.vm-step-layer) {
+  position: relative;
+  z-index: 2;
+}
+
+.vm-model-shell--discover {
+  box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(38, 183, 255, 0.22);
+}
+
+.vm-model-shell--calculate {
+  box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(253, 231, 0, 0.62);
+}
+
+.vm-model-shell--answer {
+  box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(38, 183, 255, 0.26);
+}
+
+.vm-step-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vm-context-badge {
+  position: absolute;
+  right: 0.85rem;
+  top: 0.85rem;
+  width: 4.1rem;
+  height: 4.1rem;
+  border-radius: 18px;
+  background: rgba(234, 247, 255, 0.72);
+  border: 1px solid var(--border-blue-soft);
+  opacity: 0.78;
+}
+
+.vm-step-layer--model .vm-context-badge,
+.vm-step-layer--discover .vm-context-badge,
+.vm-step-layer--calculate .vm-context-badge {
+  opacity: 0.52;
+  transform: scale(0.86);
+}
+
+.vm-step-layer--answer .vm-context-badge {
+  opacity: 0.68;
+}
+
+.vm-context-badge__asset,
+.vm-context-badge__accent {
+  position: absolute;
+  object-fit: contain;
+}
+
+.vm-context-badge__asset {
+  inset: 0.55rem;
+}
+
+.vm-context-badge__accent {
+  right: -0.35rem;
+  bottom: -0.35rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  opacity: 0.76;
+}
+
+.vm-focus-rail {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  display: flex;
+  gap: 0.35rem;
+  opacity: 0.86;
+}
+
+.vm-focus-rail__node {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgba(156, 163, 175, 0.3);
+}
+
+.vm-focus-rail__node.is-complete {
+  background: rgba(38, 183, 255, 0.45);
+}
+
+.vm-focus-rail__node.is-current {
+  width: 1.35rem;
+  background: var(--primary-blue);
+}
+
+.vm-state-chip {
+  position: absolute;
+  left: 1rem;
+  top: 2.1rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-blue-soft);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.vm-state-chip__dot {
+  position: absolute;
+  inset: 0.45rem;
+  border-radius: 999px;
+  background: var(--primary-blue);
+}
+
+.vm-step-layer--calculate .vm-state-chip__dot {
+  background: var(--accent-yellow);
+}
+
+.vm-step-layer--answer .vm-state-chip__dot {
+  background: #22C55E;
+}
+
+.vm-annotation-lines__line {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  transform-origin: left center;
+}
+
+.vm-annotation-lines__line--a {
+  right: 6rem;
+  top: 4.25rem;
+  width: 9rem;
+  border-top: 2px dashed rgba(38, 183, 255, 0.36);
+}
+
+.vm-annotation-lines__line--b {
+  left: 1.4rem;
+  bottom: 4.5rem;
+  width: 7rem;
+  border-top: 2px solid rgba(253, 231, 0, 0.72);
+}
+
+.vm-step-layer--discover .vm-annotation-lines__line,
+.vm-step-layer--calculate .vm-annotation-lines__line,
+.vm-step-layer--answer .vm-annotation-lines__line {
+  opacity: 1;
+  animation: vm-line-grow 600ms var(--motion-ease) both;
+}
+
+.vm-equation-strip {
+  position: absolute;
+  left: 50%;
+  bottom: 0.85rem;
+  display: flex;
+  max-width: min(80%, 42rem);
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(51, 51, 51, 0.09);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.45rem 0.7rem;
+  box-shadow: 0 10px 24px rgba(51, 51, 51, 0.08);
+  animation: vm-equation-reveal 320ms var(--motion-ease) both;
+}
+
+.vm-equation-strip__formula {
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(253, 231, 0, 0.38);
+  padding: 0.25rem 0.55rem;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.vm-equation-strip__status {
+  overflow: hidden;
+  max-width: 26rem;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vm-identity-build .vm-focus-rail__node.is-current,
+.vm-identity-compare .vm-focus-rail__node.is-current,
+.vm-identity-unit .vm-focus-rail__node.is-current {
+  box-shadow: 0 0 0 4px rgba(38, 183, 255, 0.14);
+}
+
+.vm-identity-hidden .vm-state-chip,
+.vm-identity-scale .vm-state-chip {
+  border-style: dashed;
+}
+
+.vm-identity-algebra .vm-annotation-lines__line--a,
+.vm-identity-transfer .vm-annotation-lines__line--a {
+  border-top-color: rgba(51, 51, 51, 0.3);
+}
+
+.vm-identity-rebuild .vm-annotation-lines__line--b {
+  border-top-style: dashed;
+}
+
+@media (max-width: 720px) {
+  .vm-intro-card {
+    min-height: auto;
+  }
+
+  .vm-intro-card--hero-left,
+  .vm-intro-card--hero-right,
+  .vm-intro-card--diagonal-story,
+  .vm-intro-card--split-story-math {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 5.75rem;
+  }
+
+  .vm-intro-hero {
+    left: 1.25rem !important;
+    right: auto !important;
+    top: 1rem !important;
+    bottom: auto !important;
+    width: 4.1rem;
+    height: 4.1rem;
+    transform: none !important;
+  }
+
+  .vm-intro-accent {
+    right: 1.25rem !important;
+    left: auto !important;
+    top: 1.7rem !important;
+    bottom: auto !important;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .vm-equation-strip {
+    max-width: calc(100% - 2rem);
+  }
+
+  .vm-equation-strip__status {
+    display: none;
+  }
+}
+
 @keyframes vm-enter {
   from {
     opacity: 0;
@@ -256,6 +734,26 @@ button:focus-visible {
 @keyframes vm-line-draw {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes vm-line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes vm-equation-reveal {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }
 

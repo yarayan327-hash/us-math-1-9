@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { Activity, CourseStage, Language } from '../types';
 import { Sparkles, Eye, BrainCircuit, ArrowRight, HelpCircle, Layers } from 'lucide-react';
 import { LevelBackground } from './LevelBackground';
-import { getAmbientMotionClass, getStageAccentAsset, getStageHeroAsset } from '../utils/visualTheme';
+import {
+  getAmbientMotionClass,
+  getContextAssets,
+  getIntroComposition,
+  getLevelIdentity,
+  getProblemContextTheme
+} from '../utils/visualTheme';
 
 interface ChallengeScreenProps {
   stage: CourseStage;
@@ -27,8 +33,10 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
   const [isThinkingMode, setIsThinkingMode] = useState<boolean>(false);
 
   const hasStrategyOptions = activity.strategyOptions && activity.strategyOptions.length > 0;
-  const heroAsset = getStageHeroAsset(stage);
-  const accentAsset = getStageAccentAsset(stage);
+  const contextAssets = getContextAssets(stage, activity);
+  const introComposition = getIntroComposition(stage, activity);
+  const identity = getLevelIdentity(stage.levelNumber);
+  const contextTheme = getProblemContextTheme(activity);
   const ambientMotion = getAmbientMotionClass(stage.levelNumber);
 
   return (
@@ -86,25 +94,26 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
 
       {/* Main 16:9 Challenge Canvas */}
       <main className="flex-1 w-full max-w-5xl mx-auto p-5 sm:p-6 flex flex-col justify-center overflow-y-auto relative z-10">
-        <div className="vm-surface vm-enter rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
-          <div className="absolute right-4 top-5 hidden sm:flex items-center justify-center w-28 h-28 vm-asset-orb rounded-[28px] opacity-90">
+        <div className={`vm-surface vm-enter vm-intro-card vm-intro-card--${introComposition} vm-theme--${contextTheme} ${identity.motifClass} rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden`}>
+          <div className="vm-intro-hero" aria-hidden="true">
             <img
-              src={heroAsset}
+              src={contextAssets.primary}
               alt=""
-              className={`vm-hero-asset ${ambientMotion} w-20 h-20 object-contain`}
+              className={`vm-hero-asset ${ambientMotion} w-full h-full object-contain`}
               draggable={false}
             />
           </div>
-          {accentAsset && (
+          {contextAssets.secondary && (
             <img
-              src={accentAsset}
+              src={contextAssets.secondary}
               alt=""
-              className="absolute right-32 bottom-5 hidden lg:block w-12 h-12 object-contain opacity-75 vm-soft-pop"
+              className="vm-intro-accent vm-soft-pop"
               draggable={false}
             />
           )}
+          <div className="vm-intro-motif" aria-hidden="true" />
           {/* Level Superpower Header */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100 relative z-10 pr-0 sm:pr-32">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100 relative z-10 vm-intro-content">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-[#26B7FF]/10 text-[#26B7FF] flex items-center justify-center font-black text-sm">
                 L{stage.levelNumber}
