@@ -3,6 +3,7 @@ import { Activity, CourseStage, Language, VisualStep } from '../types';
 import { ModelStage } from './visuals/ModelStage';
 import { ChallengeScreen } from './ChallengeScreen';
 import { ChevronLeft, ChevronRight, HelpCircle, Layers, CheckCircle2, Sparkles, BookOpen, Lock } from 'lucide-react';
+import { LevelBackground } from './LevelBackground';
 
 interface TeachingViewProps {
   stage: CourseStage;
@@ -83,7 +84,8 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
   }
 
   return (
-    <div className="w-full h-full flex flex-col justify-between overflow-hidden bg-[#F6F6F6] select-none">
+    <div className="w-full h-full flex flex-col justify-between overflow-hidden bg-[#F6F6F6] select-none relative">
+      <LevelBackground levelNumber={stage.levelNumber} mode="lesson" />
       {/* Top Fixed Navigation Bar */}
       <header className="w-full h-16 bg-white border-b border-gray-200/80 px-6 flex items-center justify-between shrink-0 z-10">
         <div className="flex items-center gap-3 sm:gap-4 min-w-0 max-w-[45%]">
@@ -147,9 +149,9 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
       </header>
 
       {/* Main 16:9 Teaching Stage Canvas */}
-      <main className="flex-1 w-full p-4 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-5 overflow-hidden min-h-0">
+      <main className="flex-1 w-full p-4 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-5 overflow-hidden min-h-0 relative z-10">
         {/* Left Instruction Panel: ~33% (4 cols in 12-col grid) */}
-        <div className="lg:col-span-4 bg-white rounded-3xl p-5 shadow-sm border border-gray-200/70 flex flex-col justify-between overflow-hidden h-full">
+        <div className="lg:col-span-4 vm-surface vm-enter rounded-3xl p-5 flex flex-col justify-between overflow-hidden h-full">
           {/* 1. STICKY TOP QUESTION AREA - Never scrolls away */}
           <div className="shrink-0 pb-3 border-b border-gray-100 space-y-2">
             <div className="flex items-center justify-between">
@@ -274,7 +276,7 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
         </div>
 
         {/* Right Visual Stage: ~67% (8 cols in 12-col grid) - FIXED COORDINATES */}
-        <div className="lg:col-span-8 bg-white rounded-3xl shadow-sm border border-gray-200/70 p-3 sm:p-4 flex flex-col justify-between overflow-hidden min-h-0 relative">
+        <div className="lg:col-span-8 vm-surface vm-enter rounded-3xl p-3 sm:p-4 flex flex-col justify-between overflow-hidden min-h-0 relative">
           <ModelStage
             activity={currentActivity}
             currentStep={currentStep}
@@ -287,7 +289,7 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
       </main>
 
       {/* Fixed Bottom Teacher Controls Bar */}
-      <footer className="w-full h-18 bg-white border-t border-gray-200 px-6 sm:px-10 flex items-center justify-between shrink-0">
+      <footer className="w-full h-18 bg-white border-t border-gray-200 px-6 sm:px-10 flex items-center justify-between shrink-0 relative z-10">
         <div className="flex items-center gap-3">
           <button
             onClick={() => {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Activity, CourseStage, Language } from '../types';
 import { Sparkles, Eye, BrainCircuit, ArrowRight, HelpCircle, Layers } from 'lucide-react';
+import { LevelBackground } from './LevelBackground';
+import { getAmbientMotionClass, getStageAccentAsset, getStageHeroAsset } from '../utils/visualTheme';
 
 interface ChallengeScreenProps {
   stage: CourseStage;
@@ -25,9 +27,13 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
   const [isThinkingMode, setIsThinkingMode] = useState<boolean>(false);
 
   const hasStrategyOptions = activity.strategyOptions && activity.strategyOptions.length > 0;
+  const heroAsset = getStageHeroAsset(stage);
+  const accentAsset = getStageAccentAsset(stage);
+  const ambientMotion = getAmbientMotionClass(stage.levelNumber);
 
   return (
-    <div className="w-full h-full flex flex-col justify-between overflow-hidden bg-[#F6F6F6] select-none">
+    <div className="w-full h-full flex flex-col justify-between overflow-hidden bg-[#F6F6F6] select-none relative">
+      <LevelBackground levelNumber={stage.levelNumber} mode="lesson" />
       {/* Top Navigation Header */}
       <header className="w-full h-16 bg-white border-b border-gray-200/80 px-6 flex items-center justify-between shrink-0 z-10">
         <div className="flex items-center gap-4">
@@ -79,10 +85,26 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
       </header>
 
       {/* Main 16:9 Challenge Canvas */}
-      <main className="flex-1 w-full max-w-5xl mx-auto p-5 sm:p-6 flex flex-col justify-center overflow-y-auto">
-        <div className="bg-white rounded-3xl border border-gray-200/80 shadow-xs p-6 sm:p-8 space-y-6">
+      <main className="flex-1 w-full max-w-5xl mx-auto p-5 sm:p-6 flex flex-col justify-center overflow-y-auto relative z-10">
+        <div className="vm-surface vm-enter rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
+          <div className="absolute right-4 top-5 hidden sm:flex items-center justify-center w-28 h-28 vm-asset-orb rounded-[28px] opacity-90">
+            <img
+              src={heroAsset}
+              alt=""
+              className={`vm-hero-asset ${ambientMotion} w-20 h-20 object-contain`}
+              draggable={false}
+            />
+          </div>
+          {accentAsset && (
+            <img
+              src={accentAsset}
+              alt=""
+              className="absolute right-32 bottom-5 hidden lg:block w-12 h-12 object-contain opacity-75 vm-soft-pop"
+              draggable={false}
+            />
+          )}
           {/* Level Superpower Header */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100 relative z-10 pr-0 sm:pr-32">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-[#26B7FF]/10 text-[#26B7FF] flex items-center justify-center font-black text-sm">
                 L{stage.levelNumber}
@@ -105,7 +127,7 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
           </div>
 
           {/* Problem Presentation - Big, clear, readable */}
-          <div className="space-y-4 py-4">
+          <div className="space-y-4 py-4 relative z-10">
             <span className="text-xs font-extrabold uppercase tracking-wider text-[#26B7FF] flex items-center gap-1.5">
               <BrainCircuit size={15} />
               <span>{language === 'ZH' ? '挑战题目' : 'The Challenge'}</span>
@@ -117,7 +139,7 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
 
           {/* Optional Strategy Selection (e.g. for Level 9 Master Challenge) */}
           {hasStrategyOptions && (
-            <div className="space-y-2.5 pt-2">
+            <div className="space-y-2.5 pt-2 relative z-10">
               <span className="text-xs font-bold uppercase tracking-wider text-[#666666]">
                 {language === 'ZH' ? '选择建模策略：' : 'Choose a Strategy:'}
               </span>
@@ -154,7 +176,7 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
       </main>
 
       {/* Bottom Action Footer - Quiet, clean, student-centered */}
-      <footer className="w-full h-18 bg-white border-t border-gray-200 px-6 sm:px-10 flex items-center justify-between shrink-0">
+      <footer className="w-full h-18 bg-white border-t border-gray-200 px-6 sm:px-10 flex items-center justify-between shrink-0 relative z-10">
         <div className="flex items-center gap-3 text-xs text-[#777777] font-semibold">
           <span>{language === 'ZH' ? '准备好后，点击右侧逐步推导' : 'When ready, begin step-by-step visual modeling'}</span>
         </div>
