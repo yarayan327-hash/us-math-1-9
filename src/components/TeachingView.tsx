@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, HelpCircle, Layers, CheckCircle2, Sparkles, 
 import { LevelBackground } from './LevelBackground';
 import { StepPresentationLayer } from './StepPresentationLayer';
 import { getTeachingVisualState } from '../utils/visualTheme';
+import { CharacterFeedbackZone, getLowGradeFeedbackAsset } from './LowGradeScene';
 
 interface TeachingViewProps {
   stage: CourseStage;
@@ -57,6 +58,14 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
 
   const interaction = currentActivity.interaction;
   const isInteractionActive = interaction && interaction.triggerAtStep === currentStep.stepNumber;
+  const feedbackState = interactionFeedback.show
+    ? interactionFeedback.isCorrect
+      ? 'correct'
+      : 'retry'
+    : isInteractionActive
+      ? 'thinking'
+      : null;
+  const feedbackAsset = getLowGradeFeedbackAsset(stage.levelNumber, currentActivity.id, feedbackState);
 
   const activeStepRef = useRef<HTMLDivElement>(null);
   const stepListRef = useRef<HTMLDivElement>(null);
@@ -294,6 +303,9 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
             onUnitTap={onUnitTap}
             isInteractiveTapActive={isInteractionActive && interaction?.type === 'tap_relationship'}
           />
+          {feedbackAsset && feedbackState && (
+            <CharacterFeedbackZone asset={feedbackAsset} state={feedbackState} />
+          )}
         </div>
       </main>
 

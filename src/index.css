@@ -294,12 +294,28 @@ button:focus-visible {
   animation-delay: 130ms;
 }
 
-.vm-low-intro-scene--omar-cookie .vm-low-intro-scene__character {
+.vm-low-intro-scene--characterOnlyRight .vm-low-intro-scene__character {
+  left: 12%;
+  width: 76%;
+}
+
+.vm-low-intro-scene--characterOnlyRight .vm-low-intro-scene__ground {
+  width: 68%;
+}
+
+.vm-low-intro-scene--objectOnlyRight .vm-low-intro-scene__object {
+  right: 8%;
+  bottom: 16%;
+  width: 62%;
+  height: 62%;
+}
+
+.vm-low-intro-scene--characterObjectRight .vm-low-intro-scene__character {
   left: -1%;
   width: 74%;
 }
 
-.vm-low-intro-scene--omar-cookie .vm-low-intro-scene__object {
+.vm-low-intro-scene--characterObjectRight .vm-low-intro-scene__object {
   right: 0;
   bottom: 18%;
   width: 46%;
@@ -437,7 +453,11 @@ button:focus-visible {
   bottom: 2rem;
 }
 
-.vm-theme--game {
+.vm-theme--game,
+.vm-theme--build,
+.vm-theme--compare,
+.vm-theme--part-whole,
+.vm-theme--unit-rate {
   --theme-accent: #26B7FF;
   --theme-soft: rgba(38, 183, 255, 0.13);
 }
@@ -462,7 +482,12 @@ button:focus-visible {
 
 .vm-theme--candy,
 .vm-theme--cards,
-.vm-theme--logic {
+.vm-theme--logic,
+.vm-theme--hidden,
+.vm-theme--scale,
+.vm-theme--algebra,
+.vm-theme--rebuild,
+.vm-theme--transfer {
   --theme-accent: #26B7FF;
   --theme-soft: rgba(38, 183, 255, 0.09);
 }
@@ -566,6 +591,50 @@ button:focus-visible {
   height: 100%;
   object-fit: contain;
   object-position: center;
+}
+
+.vm-character-feedback-zone {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 30;
+  width: clamp(10rem, 14vw, 13.75rem);
+  height: clamp(10rem, 22vh, 13.75rem);
+  pointer-events: none;
+}
+
+.vm-model-shell > .vm-character-feedback-zone {
+  position: absolute;
+  z-index: 30;
+}
+
+.vm-character-feedback-zone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 16px 22px rgba(51, 51, 51, 0.12));
+  animation: vm-feedback-enter 420ms var(--motion-ease) both;
+}
+
+.vm-character-feedback-zone__star {
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(253, 231, 0, 0.9);
+  box-shadow: 0 0 0 4px rgba(253, 231, 0, 0.16);
+}
+
+.vm-character-feedback-zone__star--one {
+  right: 18%;
+  top: 16%;
+}
+
+.vm-character-feedback-zone__star--two {
+  right: 6%;
+  top: 33%;
 }
 
 .vm-context-badge {
@@ -777,6 +846,10 @@ button:focus-visible {
     display: none;
   }
 
+  .vm-character-feedback-zone {
+    display: none;
+  }
+
   .vm-intro-hero {
     left: 1.25rem !important;
     right: auto !important;
@@ -813,6 +886,17 @@ button:focus-visible {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes vm-feedback-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

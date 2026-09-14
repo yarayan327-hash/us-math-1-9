@@ -1,59 +1,41 @@
 import React from 'react';
-import { courseAssets } from '../data/courseAssets';
+import {
+  FeedbackState,
+  getProblemVisualConfig,
+  ProblemVisualConfig
+} from '../data/courseVisualConfig';
 
-type IntroSceneConfig = {
-  character?: string;
-  object?: string;
-  supportingObject?: string;
-  variant: 'emma-crayon' | 'omar-cookie';
-};
-
-type TeachingObjectConfig = {
-  object: string;
-  variant: 'crayon';
-};
-
-const introScenes: Record<string, IntroSceneConfig> = {
-  's1-challenge': {
-    character: courseAssets.characters.girlThinking,
-    object: courseAssets.objects.crayonBlue,
-    supportingObject: courseAssets.objects.crayonYellow,
-    variant: 'emma-crayon'
-  },
-  's3-challenge': {
-    character: courseAssets.characters.boyThinking,
-    object: courseAssets.objects.cookie,
-    variant: 'omar-cookie'
-  }
-};
-
-const teachingObjects: Record<string, TeachingObjectConfig> = {
-  's1-challenge:0': {
-    object: courseAssets.objects.crayonBlue,
-    variant: 'crayon'
-  }
-};
-
-export function getLowGradeIntroScene(levelNumber: number, activityId: string): IntroSceneConfig | null {
+export function getLowGradeIntroScene(levelNumber: number, activityId: string): ProblemVisualConfig['intro'] | null {
   if (levelNumber > 3) return null;
-  return introScenes[activityId] ?? null;
+  return getProblemVisualConfig(activityId)?.intro ?? null;
 }
 
 export function getLowGradeTeachingObject(
   levelNumber: number,
   activityId: string,
   stepIndex: number
-): TeachingObjectConfig | null {
+): ProblemVisualConfig['teaching'] | null {
   if (levelNumber > 3) return null;
-  return teachingObjects[`${activityId}:${stepIndex}`] ?? null;
+  if (stepIndex !== 0) return null;
+  const teaching = getProblemVisualConfig(activityId)?.teaching ?? null;
+  return teaching?.object ? teaching : null;
 }
 
-export const LowGradeIntroScene: React.FC<{ config: IntroSceneConfig }> = ({ config }) => (
-  <div className={`vm-low-intro-scene vm-low-intro-scene--${config.variant}`} aria-hidden="true">
+export function getLowGradeFeedbackAsset(
+  levelNumber: number,
+  activityId: string,
+  state: FeedbackState | null
+) {
+  if (levelNumber > 3 || !state) return null;
+  return getProblemVisualConfig(activityId)?.feedback[state] ?? null;
+}
+
+export const LowGradeIntroScene: React.FC<{ config: NonNullable<ProblemVisualConfig['intro']> }> = ({ config }) => (
+  <div className={`vm-low-intro-scene vm-low-intro-scene--${config.preset}`} aria-hidden="true">
     <div className="vm-low-intro-scene__ground" />
     {config.character && (
       <img
-        src={config.character}
+        src={config.character.src}
         alt=""
         className="vm-low-intro-scene__character"
         draggable={false}
@@ -61,7 +43,7 @@ export const LowGradeIntroScene: React.FC<{ config: IntroSceneConfig }> = ({ con
     )}
     {config.object && (
       <img
-        src={config.object}
+        src={config.object.src}
         alt=""
         className="vm-low-intro-scene__object"
         draggable={false}
@@ -69,7 +51,7 @@ export const LowGradeIntroScene: React.FC<{ config: IntroSceneConfig }> = ({ con
     )}
     {config.supportingObject && (
       <img
-        src={config.supportingObject}
+        src={config.supportingObject.src}
         alt=""
         className="vm-low-intro-scene__support"
         draggable={false}
@@ -78,8 +60,23 @@ export const LowGradeIntroScene: React.FC<{ config: IntroSceneConfig }> = ({ con
   </div>
 );
 
-export const LowGradeTeachingObject: React.FC<{ config: TeachingObjectConfig }> = ({ config }) => (
-  <div className={`vm-low-teaching-object vm-low-teaching-object--${config.variant}`} aria-hidden="true">
-    <img src={config.object} alt="" draggable={false} />
+export const LowGradeTeachingObject: React.FC<{ config: NonNullable<ProblemVisualConfig['teaching']> }> = ({ config }) => (
+  <div className={`vm-low-teaching-object vm-low-teaching-object--${config.preset}`} aria-hidden="true">
+    {config.object && <img src={config.object.src} alt="" draggable={false} />}
+  </div>
+);
+
+export const CharacterFeedbackZone: React.FC<{ asset: { src: string; label: string }; state: FeedbackState }> = ({
+  asset,
+  state
+}) => (
+  <div className={`vm-character-feedback-zone vm-character-feedback-zone--${state}`} aria-hidden="true">
+    <img src={asset.src} alt="" draggable={false} />
+    {state === 'correct' && (
+      <>
+        <span className="vm-character-feedback-zone__star vm-character-feedback-zone__star--one" />
+        <span className="vm-character-feedback-zone__star vm-character-feedback-zone__star--two" />
+      </>
+    )}
   </div>
 );

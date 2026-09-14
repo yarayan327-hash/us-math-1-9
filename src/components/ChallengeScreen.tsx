@@ -3,8 +3,6 @@ import { Activity, CourseStage, Language } from '../types';
 import { Sparkles, Eye, BrainCircuit, ArrowRight, HelpCircle, Layers } from 'lucide-react';
 import { LevelBackground } from './LevelBackground';
 import {
-  getAmbientMotionClass,
-  getContextAssets,
   getIntroComposition,
   getLevelIdentity,
   getProblemContextTheme
@@ -34,11 +32,9 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
   const [isThinkingMode, setIsThinkingMode] = useState<boolean>(false);
 
   const hasStrategyOptions = activity.strategyOptions && activity.strategyOptions.length > 0;
-  const contextAssets = getContextAssets(stage, activity);
   const introComposition = getIntroComposition(stage, activity);
   const identity = getLevelIdentity(stage.levelNumber);
   const contextTheme = getProblemContextTheme(activity);
-  const ambientMotion = getAmbientMotionClass(stage.levelNumber);
   const lowGradeIntroScene = getLowGradeIntroScene(stage.levelNumber, activity.id);
 
   return (
@@ -97,27 +93,6 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
       {/* Main 16:9 Challenge Canvas */}
       <main className="flex-1 w-full max-w-5xl mx-auto p-5 sm:p-6 flex flex-col justify-center overflow-y-auto relative z-10">
         <div className={`vm-surface vm-enter vm-intro-card vm-intro-card--${introComposition} ${lowGradeIntroScene ? 'vm-intro-card--low-scene' : ''} vm-theme--${contextTheme} ${identity.motifClass} rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden`}>
-          {!lowGradeIntroScene && (
-            <>
-              <div className="vm-intro-hero" aria-hidden="true">
-                <img
-                  src={contextAssets.primary}
-                  alt=""
-                  className={`vm-hero-asset ${ambientMotion} w-full h-full object-contain`}
-                  draggable={false}
-                />
-              </div>
-              {contextAssets.secondary && (
-                <img
-                  src={contextAssets.secondary}
-                  alt=""
-                  className="vm-intro-accent vm-soft-pop"
-                  draggable={false}
-                />
-              )}
-              <div className="vm-intro-motif" aria-hidden="true" />
-            </>
-          )}
           {lowGradeIntroScene && <LowGradeIntroScene config={lowGradeIntroScene} />}
           {/* Level Superpower Header */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100 relative z-10 vm-intro-content">

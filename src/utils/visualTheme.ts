@@ -3,15 +3,15 @@ import { courseAssets } from '../data/courseAssets';
 
 export type AgeBand = 'playful' | 'structured' | 'mastery';
 export type ProblemContextTheme =
-  | 'game'
-  | 'recipe'
-  | 'smoothie'
-  | 'school'
-  | 'shopping'
-  | 'tickets'
-  | 'candy'
-  | 'cards'
-  | 'money'
+  | 'build'
+  | 'compare'
+  | 'part-whole'
+  | 'unit-rate'
+  | 'hidden'
+  | 'scale'
+  | 'algebra'
+  | 'rebuild'
+  | 'transfer'
   | 'logic';
 export type IntroComposition = 'hero-left' | 'hero-right' | 'center-stage' | 'diagonal-story' | 'split-story-math';
 export type TeachingVisualState = 'intro' | 'read' | 'model' | 'discover' | 'calculate' | 'answer' | 'complete';
@@ -68,67 +68,47 @@ export function getLevelIdentity(levelNumber: number): {
 }
 
 export function getProblemContextTheme(activity: Activity): ProblemContextTheme {
-  const text = `${activity.titleEN} ${activity.questionEN} ${activity.modelConfig.unitNameEN ?? ''} ${activity.assetSlots?.object ?? ''}`.toLowerCase();
-  if (text.includes('game') || text.includes('quest') || text.includes('star')) return 'game';
-  if (text.includes('recipe') || text.includes('bakery') || text.includes('flour') || text.includes('sugar')) return 'recipe';
-  if (text.includes('smoothie') || text.includes('strawberr')) return 'smoothie';
-  if (text.includes('shirt') || text.includes('hat') || text.includes('shopping')) return 'shopping';
-  if (text.includes('ticket') || text.includes('theater')) return 'tickets';
-  if (text.includes('candy')) return 'candy';
-  if (text.includes('card') || text.includes('deck')) return 'cards';
-  if (text.includes('notebook') || text.includes('book') || text.includes('pencil') || text.includes('eraser') || text.includes('crayon')) return 'school';
-  if (text.includes('money') || text.includes('dollar') || text.includes('$')) return 'money';
-  if (text.includes('cookie')) return 'recipe';
-  return 'logic';
+  switch (activity.modelType) {
+    case 'single_row_add_sub':
+      return 'build';
+    case 'comparison_two_rows':
+    case 'same_and_different':
+      return 'compare';
+    case 'single_row_partition':
+    case 'missing_part_row':
+      return 'part-whole';
+    case 'unit_scale':
+    case 'scale_unit_rate':
+      return 'unit-rate';
+    case 'ratio_rows':
+      return 'hidden';
+    case 'recipe_scale':
+    case 'sticker_pack_scale':
+    case 'proportional_pairs':
+      return 'scale';
+    case 'system_elimination':
+      return 'algebra';
+    case 'rebuild_whole':
+    case 'mia_candy_reverse':
+    case 'nested_fraction_remainder':
+      return 'rebuild';
+    case 'card_transfer_invariance':
+    case 'sam_alex_card_transfer':
+      return 'transfer';
+    default:
+      return 'logic';
+  }
 }
 
 export function getIntroComposition(stage: CourseStage, activity: Activity): IntroComposition {
-  const theme = getProblemContextTheme(activity);
-  if (stage.levelNumber >= 8 || theme === 'cards') return 'split-story-math';
-  if (theme === 'recipe' || theme === 'smoothie') return 'diagonal-story';
-  if (theme === 'school') return activity.type === 'concept_intro' ? 'hero-left' : 'hero-right';
-  if (theme === 'shopping' || theme === 'tickets') return 'center-stage';
+  if (activity.modelType === 'system_elimination') return 'split-story-math';
+  if (activity.modelType.includes('transfer')) return 'diagonal-story';
+  if (activity.modelType === 'rebuild_whole' || activity.modelType === 'nested_fraction_remainder') return 'center-stage';
+  if (activity.modelType === 'ratio_rows' || activity.modelType === 'proportional_pairs') return 'split-story-math';
+  if (activity.type === 'concept_intro') return stage.levelNumber % 2 === 0 ? 'hero-left' : 'hero-right';
+  if (activity.type === 'guided_practice') return 'center-stage';
   if (stage.levelNumber <= 2) return activity.type === 'concept_intro' ? 'hero-right' : 'center-stage';
   return stage.levelNumber % 2 === 0 ? 'hero-left' : 'hero-right';
-}
-
-export function getContextAssets(stage: CourseStage, activity: Activity): {
-  primary: string;
-  secondary: string | null;
-} {
-  const theme = getProblemContextTheme(activity);
-  switch (theme) {
-    case 'game':
-      return { primary: courseAssets.objects.gameController, secondary: courseAssets.feedback.star };
-    case 'recipe':
-      return { primary: courseAssets.objects.flourCup, secondary: courseAssets.objects.cookie };
-    case 'smoothie':
-      return { primary: courseAssets.objects.smoothieCup, secondary: courseAssets.objects.strawberry };
-    case 'school':
-      if (activity.questionEN.toLowerCase().includes('crayon')) {
-        return { primary: courseAssets.objects.crayonBlue, secondary: courseAssets.objects.crayonYellow };
-      }
-      if (activity.questionEN.toLowerCase().includes('eraser')) {
-        return { primary: courseAssets.objects.eraser, secondary: courseAssets.objects.pencil };
-      }
-      if (activity.questionEN.toLowerCase().includes('book')) {
-        return { primary: courseAssets.objects.openBook, secondary: courseAssets.objects.booksStack };
-      }
-      return { primary: courseAssets.objects.notebook, secondary: courseAssets.objects.pencil };
-    case 'shopping':
-      return { primary: courseAssets.objects.shirt, secondary: courseAssets.objects.hat };
-    case 'tickets':
-      return { primary: courseAssets.objects.adultTicket, secondary: courseAssets.objects.childTicket };
-    case 'candy':
-      return { primary: courseAssets.objects.candy, secondary: courseAssets.objects.giftBox };
-    case 'cards':
-      return { primary: courseAssets.objects.ticket, secondary: courseAssets.levelVisuals.logicNodes };
-    case 'money':
-      return { primary: courseAssets.objects.dollarBill, secondary: courseAssets.objects.coins };
-    case 'logic':
-    default:
-      return { primary: getStageHeroAsset(stage), secondary: getStageAccentAsset(stage) };
-  }
 }
 
 export function getTeachingVisualState(
