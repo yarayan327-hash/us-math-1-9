@@ -17,7 +17,7 @@ export const LevelBackground: React.FC<LevelBackgroundProps> = ({
 
   return (
     <div
-      className={`vm-level-bg vm-level-bg--${band} vm-level-bg--${mode}`}
+      className={`vm-level-bg vm-level-bg--${band} vm-level-bg--${mode} vm-level-bg--level-${levelNumber}`}
       aria-hidden="true"
     >
       <svg className="vm-bg-svg vm-bg-svg--top-left" viewBox="0 0 360 240">

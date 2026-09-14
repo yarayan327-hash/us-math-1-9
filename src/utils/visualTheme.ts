@@ -1,5 +1,5 @@
 import { Activity, CourseStage, VisualStep } from '../types';
-import { levelCompleteRasterAssets } from '../data/problemVisualConfig';
+import { levelCompleteRasterAssets } from '../data/courseVisualConfig';
 
 export type AgeBand = 'playful' | 'structured' | 'mastery';
 export type MathStructureTheme =

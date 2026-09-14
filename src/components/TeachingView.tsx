@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, HelpCircle, Layers, CheckCircle2, Sparkles, 
 import { LevelBackground } from './LevelBackground';
 import { StepPresentationLayer } from './StepPresentationLayer';
 import { getTeachingVisualState } from '../utils/visualTheme';
-import { CharacterFeedback, LowAgeDecoration } from './VisualAtmosphere';
+import { CharacterFeedback, ContextScene } from './VisualAtmosphere';
 
 interface TeachingViewProps {
   stage: CourseStage;
@@ -286,7 +286,7 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
 
         {/* Right Visual Stage: ~67% (8 cols in 12-col grid) - FIXED COORDINATES */}
         <div className={`lg:col-span-8 vm-surface vm-enter vm-model-shell vm-model-shell--${visualState} rounded-3xl p-3 sm:p-4 flex flex-col justify-between overflow-hidden min-h-0 relative`}>
-          <LowAgeDecoration levelNumber={stage.levelNumber} placement="teaching" />
+          <ContextScene levelNumber={stage.levelNumber} problemId={currentActivity.id} placement="teaching" />
           <StepPresentationLayer
             stage={stage}
             activity={currentActivity}
@@ -306,8 +306,8 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
           {feedbackState && (
             <CharacterFeedback
               levelNumber={stage.levelNumber}
+              problemId={currentActivity.id}
               state={feedbackState}
-              surface="teaching"
               showStars={feedbackState === 'correct'}
             />
           )}

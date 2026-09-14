@@ -7,9 +7,8 @@ import {
   getLevelIdentity,
   getMathStructureTheme
 } from '../utils/visualTheme';
-import { getApprovedProblemRasterAsset } from '../data/problemVisualConfig';
 import { ModelPreview } from './ModelPreview';
-import { CharacterFeedback, LowAgeDecoration } from './VisualAtmosphere';
+import { ContextScene } from './VisualAtmosphere';
 
 interface ChallengeScreenProps {
   stage: CourseStage;
@@ -37,7 +36,6 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
   const introComposition = getIntroComposition(stage, activity);
   const identity = getLevelIdentity(stage.levelNumber);
   const structureTheme = getMathStructureTheme(activity);
-  const approvedRasterAsset = getApprovedProblemRasterAsset(activity.id);
 
   return (
     <div className="w-full h-full flex flex-col justify-between overflow-hidden bg-[#F6F6F6] select-none relative">
@@ -98,16 +96,7 @@ export const ChallengeScreen: React.FC<ChallengeScreenProps> = ({
           <div className="vm-intro-hero vm-intro-hero--math" aria-hidden="true">
             <ModelPreview stage={stage} activity={activity} />
           </div>
-          {approvedRasterAsset && (
-            <img
-              src={approvedRasterAsset}
-              alt=""
-              className="vm-intro-accent"
-              draggable={false}
-            />
-          )}
-          <LowAgeDecoration levelNumber={stage.levelNumber} placement="intro" />
-          <CharacterFeedback levelNumber={stage.levelNumber} state="thinking" surface="intro" />
+          <ContextScene levelNumber={stage.levelNumber} problemId={activity.id} placement="intro" />
           <div className="vm-intro-motif" aria-hidden="true" />
           {/* Level Superpower Header */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100 relative z-10 vm-intro-content">
