@@ -32,11 +32,12 @@ export const ContextScene: React.FC<ContextSceneProps> = ({ levelNumber, problem
       ? [config.teachingWatermark]
       : [];
 
-  if (!shouldShowCharacter && objects.length === 0 && placement !== 'intro') return null;
+  if (!shouldShowCharacter && objects.length === 0 && placement === 'intro' && levelNumber <= 3) return null;
+  const isFallback = objects.length === 0;
 
   return (
     <div
-      className={`vm-context-scene vm-context-scene--${placement} vm-context-scene--level-${levelNumber} vm-context-scene--${config.ambientMotif}`}
+      className={`vm-context-scene vm-context-scene--${placement} vm-context-scene--level-${levelNumber} vm-context-scene--${config.ambientMotif} ${isFallback ? 'vm-context-scene--fallback' : ''}`}
       aria-hidden="true"
     >
       <div className="vm-context-scene__motif" />

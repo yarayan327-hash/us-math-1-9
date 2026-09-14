@@ -329,18 +329,18 @@ button:focus-visible {
 }
 
 .vm-context-scene--intro {
-  right: 1.25rem;
-  bottom: 0.8rem;
-  width: min(35%, 16rem);
-  height: min(40%, 13rem);
+  right: 0.85rem;
+  bottom: 0.55rem;
+  width: min(34%, 22rem);
+  height: min(52%, 17rem);
   overflow: hidden;
 }
 
 .vm-context-scene--teaching {
-  right: 0.7rem;
-  bottom: 0.7rem;
-  width: min(22%, 10rem);
-  height: min(28%, 9rem);
+  right: -0.35rem;
+  bottom: -0.2rem;
+  width: min(24%, 14rem);
+  height: min(32%, 12rem);
   overflow: hidden;
 }
 
@@ -373,12 +373,12 @@ button:focus-visible {
 }
 
 .vm-context-scene__character {
-  right: 0.25rem;
+  right: 0.05rem;
   bottom: 0;
   z-index: 2;
-  height: clamp(5.6rem, 11vw, 8.8rem);
+  height: clamp(11.8rem, 18vw, 16rem);
   filter: drop-shadow(0 15px 22px rgba(51, 51, 51, 0.14));
-  animation: vm-character-thinking-in 360ms var(--motion-ease) both, vm-character-float 5.8s ease-in-out 440ms infinite;
+  animation: vm-character-thinking-in 480ms var(--motion-ease) both, vm-character-float 5.8s ease-in-out 560ms infinite;
 }
 
 .vm-context-scene__object {
@@ -387,44 +387,47 @@ button:focus-visible {
 }
 
 .vm-context-scene__object--1 {
-  right: 6.7rem;
-  bottom: 0.55rem;
-  width: clamp(3.8rem, 7.5vw, 6.4rem);
-  max-height: 6.4rem;
+  right: clamp(8.8rem, 15vw, 12.8rem);
+  bottom: 0.8rem;
+  width: clamp(5.2rem, 9vw, 8rem);
+  max-height: 8rem;
 }
 
 .vm-context-scene__object--2 {
-  right: 4.9rem;
-  bottom: 2.2rem;
-  width: clamp(2.6rem, 5vw, 4.2rem);
-  max-height: 4.2rem;
+  right: clamp(6.6rem, 11vw, 9.8rem);
+  bottom: 3.1rem;
+  width: clamp(3.4rem, 6vw, 5.4rem);
+  max-height: 5.4rem;
 }
 
 .vm-context-scene__object--3 {
-  right: 7.6rem;
-  bottom: 3.45rem;
-  width: clamp(2.2rem, 4.2vw, 3.5rem);
-  max-height: 3.5rem;
+  right: clamp(9.8rem, 15vw, 13.6rem);
+  bottom: 5rem;
+  width: clamp(2.6rem, 4.6vw, 4rem);
+  max-height: 4rem;
 }
 
-.vm-context-scene--teaching .vm-context-scene__motif,
 .vm-context-scene--teaching .vm-context-scene__ground {
   display: none;
 }
 
+.vm-context-scene--teaching .vm-context-scene__motif {
+  opacity: 0.48;
+}
+
 .vm-context-scene--teaching .vm-context-scene__object {
-  right: 0.1rem;
-  bottom: 0.2rem;
-  width: min(100%, 9rem);
-  max-height: 8.5rem;
-  opacity: 0.15;
+  right: -0.2rem;
+  bottom: -0.1rem;
+  width: min(108%, 13.5rem);
+  max-height: 11.5rem;
+  opacity: 0.2;
   filter: saturate(0.86);
 }
 
 .vm-context-scene--teaching.vm-context-scene--level-1 .vm-context-scene__object,
 .vm-context-scene--teaching.vm-context-scene--level-2 .vm-context-scene__object,
 .vm-context-scene--teaching.vm-context-scene--level-3 .vm-context-scene__object {
-  opacity: 0.16;
+  opacity: 0.24;
 }
 
 .vm-context-scene--level-4,
@@ -453,14 +456,50 @@ button:focus-visible {
 .vm-context-scene--level-4 .vm-context-scene__object,
 .vm-context-scene--level-5 .vm-context-scene__object,
 .vm-context-scene--level-6 .vm-context-scene__object {
-  opacity: 0.58;
+  opacity: 0.62;
 }
 
 .vm-context-scene--level-7 .vm-context-scene__object,
 .vm-context-scene--level-8 .vm-context-scene__object,
 .vm-context-scene--level-9 .vm-context-scene__object {
-  opacity: 0.32;
+  opacity: 0.34;
   filter: saturate(0.72);
+}
+
+.vm-context-scene--teaching.vm-context-scene--level-4 .vm-context-scene__object,
+.vm-context-scene--teaching.vm-context-scene--level-5 .vm-context-scene__object,
+.vm-context-scene--teaching.vm-context-scene--level-6 .vm-context-scene__object {
+  opacity: 0.18;
+}
+
+.vm-context-scene--teaching.vm-context-scene--level-7 .vm-context-scene__object,
+.vm-context-scene--teaching.vm-context-scene--level-8 .vm-context-scene__object,
+.vm-context-scene--teaching.vm-context-scene--level-9 .vm-context-scene__object {
+  opacity: 0.14;
+}
+
+.vm-context-scene--fallback {
+  right: 0.2rem;
+  bottom: 3.6rem;
+  width: min(34%, 19rem);
+  height: min(42%, 15rem);
+}
+
+.vm-context-scene--fallback .vm-context-scene__motif {
+  opacity: 0.9;
+}
+
+.vm-context-scene--teaching.vm-context-scene--fallback .vm-context-scene__motif {
+  background:
+    radial-gradient(circle at 22% 28%, rgba(38, 183, 255, 0.34) 0 3px, transparent 4px),
+    radial-gradient(circle at 72% 30%, rgba(253, 231, 0, 0.44) 0 4px, transparent 5px),
+    radial-gradient(circle at 46% 74%, rgba(51, 51, 51, 0.22) 0 2px, transparent 3px),
+    linear-gradient(32deg, transparent 0 31%, rgba(38, 183, 255, 0.2) 32% 33%, transparent 34% 100%),
+    linear-gradient(142deg, transparent 0 48%, rgba(51, 51, 51, 0.14) 49% 50%, transparent 51% 100%),
+    repeating-linear-gradient(90deg, rgba(38, 183, 255, 0.08) 0 1px, transparent 1px 28px);
+  border-right: 2px solid rgba(38, 183, 255, 0.14);
+  border-bottom: 2px solid rgba(253, 231, 0, 0.16);
+  border-radius: 2rem 0 1.25rem 0;
 }
 
 .vm-context-scene--hidden .vm-context-scene__motif {
@@ -505,13 +544,13 @@ button:focus-visible {
 .vm-character-feedback__asset {
   display: block;
   width: auto;
-  height: clamp(6.8rem, 14vw, 10.5rem);
+  height: clamp(9.4rem, 15vw, 13rem);
   object-fit: contain;
   filter: drop-shadow(0 14px 20px rgba(51, 51, 51, 0.12));
 }
 
 .vm-character-feedback--intro .vm-character-feedback__asset {
-  height: clamp(6.5rem, 12vw, 9.25rem);
+  height: clamp(11.8rem, 18vw, 16rem);
 }
 
 .vm-character-feedback--thinking {
@@ -748,6 +787,10 @@ button:focus-visible {
   bottom: 2rem;
 }
 
+.vm-intro-card--story-scene .vm-intro-hero {
+  display: none;
+}
+
 .vm-theme--build,
 .vm-theme--compare,
 .vm-theme--unit-rate {
@@ -855,6 +898,46 @@ button:focus-visible {
 
 .vm-model-shell--answer {
   box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(38, 183, 255, 0.26);
+}
+
+.vm-model-shell svg g[id*="unit"],
+.vm-model-shell svg g[id*="ratio"],
+.vm-model-shell svg g[id*="token"],
+.vm-model-shell svg g[id*="rebuild"],
+.vm-model-shell svg g[id*="pct"] {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vm-math-unit-reveal 260ms var(--motion-ease) both;
+}
+
+.vm-model-shell svg g[id$="-1"],
+.vm-model-shell svg g[id$="-4"],
+.vm-model-shell svg g[id$="-7"] {
+  animation-delay: 45ms;
+}
+
+.vm-model-shell svg g[id$="-2"],
+.vm-model-shell svg g[id$="-5"],
+.vm-model-shell svg g[id$="-8"] {
+  animation-delay: 90ms;
+}
+
+.vm-model-shell svg g[id$="-3"],
+.vm-model-shell svg g[id$="-6"],
+.vm-model-shell svg g[id$="-9"] {
+  animation-delay: 135ms;
+}
+
+.vm-model-shell svg #take-away-arrow-indicator,
+.vm-model-shell svg #diff-guideline,
+.vm-model-shell svg #final-answer-banner {
+  animation: vm-math-relation-reveal 360ms var(--motion-ease) both;
+}
+
+.vm-model-shell--discover svg g[id*="unit"] rect[fill*="234, 247, 255"],
+.vm-model-shell--discover svg g[id*="unit"] rect[stroke-dasharray],
+.vm-model-shell--discover svg g[id*="ratio"] rect[stroke-dasharray] {
+  animation: vm-math-ghost-emphasis 520ms var(--motion-ease) both;
 }
 
 .vm-step-layer {
@@ -1108,25 +1191,38 @@ button:focus-visible {
   .vm-context-scene--intro {
     right: 0.65rem;
     bottom: 0.55rem;
-    width: 7rem;
-    height: 5.5rem;
-    opacity: 0.28;
+    width: 8rem;
+    height: 6.75rem;
+    opacity: 0.9;
   }
 
   .vm-context-scene--intro .vm-context-scene__character {
-    display: none;
+    display: block;
+    right: 0;
+    height: 5.9rem;
   }
 
   .vm-context-scene--intro .vm-context-scene__object {
-    right: 0.25rem;
+    right: 4.1rem;
     bottom: 0.2rem;
-    width: 4.5rem;
-    opacity: 0.2;
+    width: 3.5rem;
+    opacity: 0.72;
   }
 
-  .vm-context-scene--teaching,
   .vm-character-feedback--teaching {
     display: none;
+  }
+
+  .vm-context-scene--teaching {
+    right: -0.25rem;
+    bottom: 0.1rem;
+    width: 6.6rem;
+    height: 5.4rem;
+  }
+
+  .vm-context-scene--teaching .vm-context-scene__object {
+    width: 5.4rem;
+    opacity: 0.14;
   }
 
   .vm-equation-strip {
@@ -1134,6 +1230,13 @@ button:focus-visible {
   }
 
   .vm-equation-strip__status {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .vm-context-scene--intro .vm-context-scene__character,
+  .vm-context-scene--teaching {
     display: none;
   }
 }
@@ -1288,6 +1391,40 @@ button:focus-visible {
   }
 }
 
+@keyframes vm-math-unit-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes vm-math-relation-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vm-math-ghost-emphasis {
+  0% {
+    opacity: 0.45;
+  }
+  48% {
+    opacity: 0.86;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes vm-node-activate {
   0% {
     opacity: 0;
@@ -1311,7 +1448,15 @@ button:focus-visible {
   .vm-step-layer--answer .vm-annotation-lines__line,
   .vm-equation-strip,
   .vm-character-feedback,
-  .vm-character-feedback__star {
+  .vm-character-feedback__star,
+  .vm-model-shell svg g[id*="unit"],
+  .vm-model-shell svg g[id*="ratio"],
+  .vm-model-shell svg g[id*="token"],
+  .vm-model-shell svg g[id*="rebuild"],
+  .vm-model-shell svg g[id*="pct"],
+  .vm-model-shell svg #take-away-arrow-indicator,
+  .vm-model-shell svg #diff-guideline,
+  .vm-model-shell svg #final-answer-banner {
     animation: none !important;
   }
 }

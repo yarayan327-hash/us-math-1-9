@@ -296,6 +296,7 @@ export const TeachingView: React.FC<TeachingViewProps> = ({
             language={language}
           />
           <ModelStage
+            key={`${currentActivity.id}-${stepIndex}`}
             activity={currentActivity}
             currentStep={currentStep}
             language={language}

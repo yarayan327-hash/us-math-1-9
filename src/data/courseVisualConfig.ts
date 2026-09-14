@@ -64,7 +64,7 @@ const characterAssets: Record<CharacterIdentity, Record<CharacterPose, string>> 
 };
 
 export const problemVisualConfig: Record<string, ProblemVisualConfig> = {
-  's1-challenge': scene('emma', [courseAssets.objects.crayonBlue, courseAssets.objects.crayonYellow], courseAssets.objects.crayonBlue, 'build'),
+  's1-challenge': scene('emma', [courseAssets.objects.crayonYellow], courseAssets.objects.crayonYellow, 'build'),
   's1-guided-sub': scene('ben', [], null, 'build'),
   's1-guided-blocks': scene('leo', [courseAssets.objects.toyBlockBlue], courseAssets.objects.toyBlockBlue, 'build'),
   's1-prac1': scene('mia', [courseAssets.objects.pencil], courseAssets.objects.pencil, 'build'),
