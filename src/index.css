@@ -232,6 +232,13 @@ button:focus-visible {
   box-shadow: 0 16px 38px rgba(38, 183, 255, 0.13);
 }
 
+.vm-intro-hero--math {
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(234, 247, 255, 0.62)),
+    var(--light-blue);
+}
+
 .vm-intro-accent {
   position: absolute;
   z-index: 1;
@@ -240,6 +247,192 @@ button:focus-visible {
   object-fit: contain;
   opacity: 0.76;
   filter: drop-shadow(0 10px 16px rgba(51, 51, 51, 0.1));
+}
+
+.vm-low-age-decoration {
+  position: absolute;
+  z-index: 1;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.vm-low-age-decoration--intro {
+  right: 1.25rem;
+  bottom: 1rem;
+  width: min(24%, 9rem);
+  max-height: 28%;
+  opacity: 0.16;
+  filter: saturate(0.92);
+  mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 82%);
+}
+
+.vm-low-age-decoration--teaching {
+  right: 0.85rem;
+  bottom: 0.85rem;
+  width: min(18%, 8rem);
+  max-height: 24%;
+  opacity: 0.08;
+  filter: saturate(0.85);
+}
+
+.vm-character-feedback {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: bottom center;
+}
+
+.vm-character-feedback--intro {
+  right: 0.75rem;
+  bottom: 0.55rem;
+}
+
+.vm-character-feedback--teaching {
+  right: 0.75rem;
+  bottom: 4.1rem;
+}
+
+.vm-character-feedback__asset {
+  display: block;
+  width: auto;
+  height: clamp(6.8rem, 14vw, 10.5rem);
+  object-fit: contain;
+  filter: drop-shadow(0 14px 20px rgba(51, 51, 51, 0.12));
+}
+
+.vm-character-feedback--intro .vm-character-feedback__asset {
+  height: clamp(6.5rem, 12vw, 9.25rem);
+}
+
+.vm-character-feedback--thinking {
+  animation: vm-character-thinking-in 340ms var(--motion-ease) both, vm-character-float 4.8s ease-in-out 420ms infinite;
+}
+
+.vm-character-feedback--correct {
+  animation: vm-character-correct-in 720ms var(--motion-ease) both;
+}
+
+.vm-character-feedback--retry {
+  animation: vm-character-retry-in 360ms var(--motion-ease) both;
+}
+
+.vm-character-feedback__stars {
+  position: absolute;
+  inset: -1.1rem -0.4rem auto auto;
+  width: 4rem;
+  height: 3.2rem;
+}
+
+.vm-character-feedback__star {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  opacity: 0;
+  animation: vm-feedback-star 760ms var(--motion-ease) both;
+}
+
+.vm-character-feedback__star--1 {
+  right: 0.1rem;
+  top: 1.1rem;
+}
+
+.vm-character-feedback__star--2 {
+  right: 1.45rem;
+  top: 0.2rem;
+  animation-delay: 80ms;
+}
+
+.vm-character-feedback__star--3 {
+  right: 2.65rem;
+  top: 1.5rem;
+  animation-delay: 130ms;
+}
+
+.vm-model-preview {
+  width: 100%;
+  height: 100%;
+  padding: 0.25rem;
+}
+
+.vm-model-preview__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.vm-preview-group {
+  animation: vm-preview-enter 520ms var(--motion-ease) both;
+}
+
+.vm-preview-unit {
+  fill: rgba(255, 255, 255, 0.92);
+  stroke: rgba(51, 51, 51, 0.5);
+  stroke-width: 2;
+}
+
+.vm-preview-unit--active {
+  fill: rgba(253, 231, 0, 0.72);
+  stroke: rgba(51, 51, 51, 0.62);
+}
+
+.vm-preview-unit--ghost {
+  fill: rgba(234, 247, 255, 0.7);
+  stroke: rgba(38, 183, 255, 0.62);
+  stroke-dasharray: 5 5;
+}
+
+.vm-preview-baseline,
+.vm-preview-bracket,
+.vm-preview-connector,
+.vm-preview-match-rail,
+.vm-preview-cancel-line {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.vm-preview-baseline {
+  stroke: rgba(51, 51, 51, 0.22);
+  stroke-width: 2;
+  stroke-dasharray: 4 5;
+}
+
+.vm-preview-bracket {
+  stroke: rgba(51, 51, 51, 0.45);
+  stroke-width: 3;
+}
+
+.vm-preview-bracket--difference,
+.vm-preview-connector {
+  stroke: rgba(38, 183, 255, 0.72);
+  stroke-width: 3;
+}
+
+.vm-preview-match-rail {
+  stroke: rgba(38, 183, 255, 0.38);
+  stroke-width: 8;
+}
+
+.vm-preview-cancel-line {
+  stroke: rgba(51, 51, 51, 0.5);
+  stroke-width: 3;
+}
+
+.vm-preview-whole-frame,
+.vm-preview-zone {
+  fill: transparent;
+  stroke: rgba(38, 183, 255, 0.45);
+  stroke-width: 2;
+}
+
+.vm-preview-transfer-path {
+  stroke-dasharray: 8 7;
+}
+
+.vm-preview-arrow-head {
+  fill: rgba(38, 183, 255, 0.72);
 }
 
 .vm-intro-motif {
@@ -347,31 +540,27 @@ button:focus-visible {
   bottom: 2rem;
 }
 
-.vm-theme--game {
+.vm-theme--build,
+.vm-theme--compare,
+.vm-theme--unit-rate {
   --theme-accent: #26B7FF;
   --theme-soft: rgba(38, 183, 255, 0.13);
 }
 
-.vm-theme--recipe,
-.vm-theme--smoothie {
+.vm-theme--part-whole,
+.vm-theme--scale,
+.vm-theme--rebuild {
   --theme-accent: #FDE700;
   --theme-soft: rgba(253, 231, 0, 0.2);
 }
 
-.vm-theme--school {
-  --theme-accent: #26B7FF;
-  --theme-soft: rgba(38, 183, 255, 0.1);
-}
-
-.vm-theme--shopping,
-.vm-theme--tickets,
-.vm-theme--money {
+.vm-theme--algebra,
+.vm-theme--transfer {
   --theme-accent: #333333;
   --theme-soft: rgba(51, 51, 51, 0.08);
 }
 
-.vm-theme--candy,
-.vm-theme--cards,
+.vm-theme--hidden,
 .vm-theme--logic {
   --theme-accent: #26B7FF;
   --theme-soft: rgba(38, 183, 255, 0.09);
@@ -435,9 +624,17 @@ button:focus-visible {
   isolation: isolate;
 }
 
-.vm-model-shell > :not(.vm-step-layer) {
+.vm-model-shell > :not(.vm-step-layer):not(.vm-low-age-decoration):not(.vm-character-feedback) {
   position: relative;
   z-index: 2;
+}
+
+.vm-model-shell > .vm-low-age-decoration {
+  z-index: 0;
+}
+
+.vm-model-shell > .vm-character-feedback {
+  z-index: 5;
 }
 
 .vm-model-shell--discover {
@@ -471,6 +668,14 @@ button:focus-visible {
   opacity: 0.78;
 }
 
+.vm-context-badge--math {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.3rem;
+  padding: 0.7rem;
+}
+
 .vm-step-layer--model .vm-context-badge,
 .vm-step-layer--discover .vm-context-badge,
 .vm-step-layer--calculate .vm-context-badge {
@@ -486,6 +691,25 @@ button:focus-visible {
 .vm-context-badge__accent {
   position: absolute;
   object-fit: contain;
+}
+
+.vm-context-badge__unit {
+  border-radius: 0.38rem;
+  border: 1.5px solid rgba(38, 183, 255, 0.55);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.vm-context-badge__unit:nth-child(2) {
+  background: rgba(253, 231, 0, 0.46);
+  border-color: rgba(51, 51, 51, 0.28);
+}
+
+.vm-context-badge__path {
+  grid-column: 1 / 3;
+  align-self: center;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(38, 183, 255, 0.7), rgba(253, 231, 0, 0.7));
 }
 
 .vm-context-badge__asset {
@@ -669,6 +893,15 @@ button:focus-visible {
     height: 2.4rem;
   }
 
+  .vm-low-age-decoration {
+    display: none;
+  }
+
+  .vm-character-feedback--intro,
+  .vm-character-feedback--teaching {
+    display: none;
+  }
+
   .vm-equation-strip {
     max-width: calc(100% - 2rem);
   }
@@ -757,6 +990,77 @@ button:focus-visible {
   }
 }
 
+@keyframes vm-preview-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vm-character-thinking-in {
+  from {
+    opacity: 0;
+    transform: translateY(7px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes vm-character-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes vm-character-correct-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+  48% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes vm-character-retry-in {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes vm-feedback-star {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.72);
+  }
+  35% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(1);
+  }
+}
+
 @keyframes vm-node-activate {
   0% {
     opacity: 0;
@@ -765,5 +1069,22 @@ button:focus-visible {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vm-enter,
+  .vm-soft-pop,
+  .vm-float-playful,
+  .vm-float-structured,
+  .vm-float-mastery,
+  .vm-preview-group,
+  .vm-step-layer--discover .vm-annotation-lines__line,
+  .vm-step-layer--calculate .vm-annotation-lines__line,
+  .vm-step-layer--answer .vm-annotation-lines__line,
+  .vm-equation-strip,
+  .vm-character-feedback,
+  .vm-character-feedback__star {
+    animation: none !important;
   }
 }

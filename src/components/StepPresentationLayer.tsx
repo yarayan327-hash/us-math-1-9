@@ -1,10 +1,8 @@
 import React from 'react';
 import { Activity, CourseStage, Language, VisualStep } from '../types';
 import {
-  getAmbientMotionClass,
-  getContextAssets,
   getLevelIdentity,
-  getProblemContextTheme,
+  getMathStructureTheme,
   getTeachingVisualState
 } from '../utils/visualTheme';
 
@@ -27,28 +25,16 @@ export const StepPresentationLayer: React.FC<StepPresentationLayerProps> = ({
 }) => {
   const visualState = getTeachingVisualState(currentStep, stepIndex, totalSteps);
   const identity = getLevelIdentity(stage.levelNumber);
-  const theme = getProblemContextTheme(activity);
-  const assets = getContextAssets(stage, activity);
+  const theme = getMathStructureTheme(activity);
   const formula = language === 'ZH' ? currentStep.formulaZH || currentStep.formulaEN : currentStep.formulaEN;
   const status = language === 'ZH' ? currentStep.statusNoteZH || currentStep.statusNoteEN : currentStep.statusNoteEN;
 
   return (
     <div className={`vm-step-layer vm-step-layer--${visualState} vm-theme--${theme} ${identity.motifClass}`}>
-      <div className="vm-context-badge" aria-hidden="true">
-        <img
-          src={assets.primary}
-          alt=""
-          className={`vm-context-badge__asset ${getAmbientMotionClass(stage.levelNumber)}`}
-          draggable={false}
-        />
-        {assets.secondary && (
-          <img
-            src={assets.secondary}
-            alt=""
-            className="vm-context-badge__accent"
-            draggable={false}
-          />
-        )}
+      <div className="vm-context-badge vm-context-badge--math" aria-hidden="true">
+        <span className="vm-context-badge__unit" />
+        <span className="vm-context-badge__unit" />
+        <span className="vm-context-badge__path" />
       </div>
 
       <div className="vm-focus-rail" aria-hidden="true">

@@ -25,7 +25,7 @@ export const SummaryView: React.FC<SummaryViewProps> = ({
   const stage = getStage(stageId);
   const nextStage = stage.nextStageId ? getStage(stage.nextStageId) : null;
   const reviewData = getStageReview(stageId);
-  const completionAsset = getCompletionAsset(stage);
+  const completionAsset = getCompletionAsset();
 
   useEffect(() => {
     if (stage.levelNumber >= 7) return;
