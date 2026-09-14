@@ -122,15 +122,6 @@ button:focus-visible {
   background: radial-gradient(circle at center, rgba(246, 246, 246, 0.88), rgba(246, 246, 246, 0));
 }
 
-.vm-level-bg::before {
-  content: "";
-  position: absolute;
-  inset: 5rem 4rem 5.5rem;
-  opacity: 0;
-  background-repeat: no-repeat;
-  background-size: 22rem 14rem, 18rem 12rem, 100% 100%;
-}
-
 .vm-bg-svg {
   position: absolute;
   width: min(38vw, 430px);
@@ -162,69 +153,6 @@ button:focus-visible {
 
 .vm-level-bg--complete {
   --bg-decoration-opacity: 0.09;
-}
-
-.vm-level-bg--level-1::before {
-  opacity: 0.08;
-  background-image:
-    repeating-linear-gradient(90deg, transparent 0 16px, rgba(38, 183, 255, 0.45) 17px 20px, transparent 21px 36px),
-    radial-gradient(circle at 82% 74%, rgba(253, 231, 0, 0.44) 0 4px, transparent 5px);
-  background-position: left 50% bottom 12%, right 16% top 18%;
-}
-
-.vm-level-bg--level-2::before {
-  opacity: 0.08;
-  background-image:
-    linear-gradient(90deg, rgba(38, 183, 255, 0.55) 0 38%, transparent 38% 45%, rgba(253, 231, 0, 0.42) 45% 68%, transparent 68%),
-    repeating-linear-gradient(0deg, transparent 0 20px, rgba(51, 51, 51, 0.12) 21px 22px);
-  background-position: left 8% top 20%, right 10% bottom 18%;
-}
-
-.vm-level-bg--level-3::before {
-  opacity: 0.08;
-  background-image:
-    conic-gradient(from 90deg at 50% 50%, rgba(38, 183, 255, 0.35), transparent 22%, rgba(253, 231, 0, 0.36) 23%, transparent 48%),
-    radial-gradient(circle at 50% 50%, rgba(38, 183, 255, 0.36) 0 5px, transparent 6px);
-  background-position: left 10% bottom 18%, right 14% top 24%;
-}
-
-.vm-level-bg--level-4::before,
-.vm-level-bg--level-5::before,
-.vm-level-bg--level-6::before {
-  opacity: 0.09;
-  background-image:
-    radial-gradient(circle at 18% 28%, rgba(38, 183, 255, 0.5) 0 3px, transparent 4px),
-    radial-gradient(circle at 82% 70%, rgba(253, 231, 0, 0.46) 0 4px, transparent 5px),
-    linear-gradient(115deg, transparent 0 44%, rgba(38, 183, 255, 0.18) 45% 46%, transparent 47% 100%);
-  background-position: left 6% top 24%, right 10% bottom 18%, center;
-}
-
-.vm-level-bg--level-7::before,
-.vm-level-bg--level-8::before,
-.vm-level-bg--level-9::before {
-  opacity: 0.13;
-  background-image:
-    linear-gradient(90deg, transparent 0 20%, rgba(51, 51, 51, 0.16) 21% 22%, transparent 23% 100%),
-    radial-gradient(circle at 74% 42%, rgba(38, 183, 255, 0.46) 0 3px, transparent 4px),
-    repeating-linear-gradient(90deg, rgba(38, 183, 255, 0.08) 0 1px, transparent 1px 38px);
-  background-size: 20rem 9rem, 18rem 12rem, 100% 100%;
-  background-position: left 8% top 20%, right 8% bottom 18%, center;
-}
-
-.vm-level-bg--level-8::before {
-  opacity: 0.14;
-  background-image:
-    conic-gradient(from 35deg at 22% 54%, rgba(38, 183, 255, 0.22), transparent 19%, rgba(253, 231, 0, 0.28) 20%, transparent 42%),
-    radial-gradient(circle at 80% 44%, rgba(38, 183, 255, 0.38) 0 3px, transparent 4px),
-    repeating-linear-gradient(90deg, rgba(38, 183, 255, 0.07) 0 1px, transparent 1px 42px);
-}
-
-.vm-level-bg--level-9::before {
-  opacity: 0.14;
-  background-image:
-    radial-gradient(circle at 18% 36%, rgba(38, 183, 255, 0.46) 0 3px, transparent 4px),
-    radial-gradient(circle at 84% 62%, rgba(253, 231, 0, 0.42) 0 4px, transparent 5px),
-    linear-gradient(135deg, transparent 0 36%, rgba(51, 51, 51, 0.13) 37% 38%, transparent 39% 100%);
 }
 
 .vm-bg-line {
@@ -288,6 +216,96 @@ button:focus-visible {
   mask-image: radial-gradient(circle at var(--motif-x, 82%) var(--motif-y, 24%), black, transparent 46%);
 }
 
+.vm-intro-card--low-scene {
+  --intro-content-width: min(72%, 42rem);
+  padding-left: clamp(1.5rem, 3vw, 2rem) !important;
+  padding-right: clamp(16rem, 27vw, 23rem) !important;
+  background: #fff;
+}
+
+.vm-intro-card--low-scene::before,
+.vm-intro-card--low-scene .vm-intro-motif {
+  display: none;
+}
+
+.vm-intro-card--low-scene .vm-intro-content,
+.vm-intro-card--low-scene .space-y-4,
+.vm-intro-card--low-scene .space-y-2\.5 {
+  max-width: var(--intro-content-width);
+}
+
+.vm-low-intro-scene {
+  position: absolute;
+  right: clamp(1.5rem, 3vw, 2rem);
+  bottom: 1.25rem;
+  z-index: 1;
+  width: clamp(13.75rem, 23vw, 21.25rem);
+  height: clamp(13.75rem, 28vh, 20.625rem);
+  pointer-events: none;
+}
+
+.vm-low-intro-scene__ground {
+  position: absolute;
+  right: 9%;
+  bottom: 2%;
+  width: 76%;
+  height: 20%;
+  border-radius: 999px;
+  background: rgba(38, 183, 255, 0.07);
+}
+
+.vm-low-intro-scene__character,
+.vm-low-intro-scene__object,
+.vm-low-intro-scene__support {
+  position: absolute;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 14px 22px rgba(51, 51, 51, 0.11));
+  animation: vm-low-scene-enter 400ms var(--motion-ease) both;
+}
+
+.vm-low-intro-scene__character {
+  left: -2%;
+  bottom: 5%;
+  width: 76%;
+  height: 96%;
+  z-index: 2;
+}
+
+.vm-low-intro-scene__object {
+  right: 1%;
+  bottom: 17%;
+  width: 48%;
+  height: 50%;
+  z-index: 3;
+  animation-delay: 90ms;
+}
+
+.vm-low-intro-scene__support {
+  right: 2%;
+  bottom: 37%;
+  width: 18%;
+  height: 18%;
+  opacity: 0.9;
+  z-index: 3;
+  animation-delay: 130ms;
+}
+
+.vm-low-intro-scene--omar-cookie .vm-low-intro-scene__character {
+  left: -1%;
+  width: 74%;
+}
+
+.vm-low-intro-scene--omar-cookie .vm-low-intro-scene__object {
+  right: 0;
+  bottom: 18%;
+  width: 46%;
+  height: 46%;
+}
+
 .vm-intro-hero {
   position: absolute;
   z-index: 1;
@@ -304,13 +322,6 @@ button:focus-visible {
   box-shadow: 0 16px 38px rgba(38, 183, 255, 0.13);
 }
 
-.vm-intro-hero--math {
-  overflow: hidden;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(234, 247, 255, 0.62)),
-    var(--light-blue);
-}
-
 .vm-intro-accent {
   position: absolute;
   z-index: 1;
@@ -319,367 +330,6 @@ button:focus-visible {
   object-fit: contain;
   opacity: 0.76;
   filter: drop-shadow(0 10px 16px rgba(51, 51, 51, 0.1));
-}
-
-.vm-context-scene {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-.vm-context-scene--intro {
-  right: 0.85rem;
-  bottom: 0.55rem;
-  width: min(34%, 22rem);
-  height: min(52%, 17rem);
-  overflow: hidden;
-}
-
-.vm-context-scene--teaching {
-  right: -0.35rem;
-  bottom: -0.2rem;
-  width: min(24%, 14rem);
-  height: min(32%, 12rem);
-  overflow: hidden;
-}
-
-.vm-context-scene__ground {
-  position: absolute;
-  right: 0.2rem;
-  bottom: 0.05rem;
-  width: 86%;
-  height: 34%;
-  border-radius: 999px;
-  background: radial-gradient(circle at 50% 50%, rgba(253, 231, 0, 0.17), rgba(234, 247, 255, 0.08) 48%, transparent 76%);
-}
-
-.vm-context-scene__motif {
-  position: absolute;
-  inset: 0;
-  opacity: 0.22;
-  background:
-    radial-gradient(circle at 74% 24%, rgba(253, 231, 0, 0.8) 0 3px, transparent 4px),
-    radial-gradient(circle at 88% 42%, rgba(38, 183, 255, 0.8) 0 2px, transparent 3px),
-    linear-gradient(135deg, transparent 48%, rgba(38, 183, 255, 0.2) 49%, transparent 52%);
-}
-
-.vm-context-scene__object,
-.vm-context-scene__character {
-  position: absolute;
-  display: block;
-  object-fit: contain;
-  user-select: none;
-}
-
-.vm-context-scene__character {
-  right: 0.05rem;
-  bottom: 0;
-  z-index: 2;
-  height: clamp(11.8rem, 18vw, 16rem);
-  filter: drop-shadow(0 15px 22px rgba(51, 51, 51, 0.14));
-  animation: vm-character-thinking-in 480ms var(--motion-ease) both, vm-character-float 5.8s ease-in-out 560ms infinite;
-}
-
-.vm-context-scene__object {
-  z-index: 1;
-  filter: drop-shadow(0 12px 18px rgba(51, 51, 51, 0.1));
-}
-
-.vm-context-scene__object--1 {
-  right: clamp(8.8rem, 15vw, 12.8rem);
-  bottom: 0.8rem;
-  width: clamp(5.2rem, 9vw, 8rem);
-  max-height: 8rem;
-}
-
-.vm-context-scene__object--2 {
-  right: clamp(6.6rem, 11vw, 9.8rem);
-  bottom: 3.1rem;
-  width: clamp(3.4rem, 6vw, 5.4rem);
-  max-height: 5.4rem;
-}
-
-.vm-context-scene__object--3 {
-  right: clamp(9.8rem, 15vw, 13.6rem);
-  bottom: 5rem;
-  width: clamp(2.6rem, 4.6vw, 4rem);
-  max-height: 4rem;
-}
-
-.vm-context-scene--teaching .vm-context-scene__ground {
-  display: none;
-}
-
-.vm-context-scene--teaching .vm-context-scene__motif {
-  opacity: 0.48;
-}
-
-.vm-context-scene--teaching .vm-context-scene__object {
-  right: -0.2rem;
-  bottom: -0.1rem;
-  width: min(108%, 13.5rem);
-  max-height: 11.5rem;
-  opacity: 0.2;
-  filter: saturate(0.86);
-}
-
-.vm-context-scene--teaching.vm-context-scene--level-1 .vm-context-scene__object,
-.vm-context-scene--teaching.vm-context-scene--level-2 .vm-context-scene__object,
-.vm-context-scene--teaching.vm-context-scene--level-3 .vm-context-scene__object {
-  opacity: 0.24;
-}
-
-.vm-context-scene--level-4,
-.vm-context-scene--level-5,
-.vm-context-scene--level-6 {
-  width: min(28%, 13rem);
-  height: min(32%, 10.5rem);
-}
-
-.vm-context-scene--level-7,
-.vm-context-scene--level-8,
-.vm-context-scene--level-9 {
-  width: min(34%, 16rem);
-  height: min(42%, 13rem);
-}
-
-.vm-context-scene--level-4 .vm-context-scene__character,
-.vm-context-scene--level-5 .vm-context-scene__character,
-.vm-context-scene--level-6 .vm-context-scene__character,
-.vm-context-scene--level-7 .vm-context-scene__character,
-.vm-context-scene--level-8 .vm-context-scene__character,
-.vm-context-scene--level-9 .vm-context-scene__character {
-  display: none;
-}
-
-.vm-context-scene--level-4 .vm-context-scene__object,
-.vm-context-scene--level-5 .vm-context-scene__object,
-.vm-context-scene--level-6 .vm-context-scene__object {
-  opacity: 0.62;
-}
-
-.vm-context-scene--level-7 .vm-context-scene__object,
-.vm-context-scene--level-8 .vm-context-scene__object,
-.vm-context-scene--level-9 .vm-context-scene__object {
-  opacity: 0.34;
-  filter: saturate(0.72);
-}
-
-.vm-context-scene--teaching.vm-context-scene--level-4 .vm-context-scene__object,
-.vm-context-scene--teaching.vm-context-scene--level-5 .vm-context-scene__object,
-.vm-context-scene--teaching.vm-context-scene--level-6 .vm-context-scene__object {
-  opacity: 0.18;
-}
-
-.vm-context-scene--teaching.vm-context-scene--level-7 .vm-context-scene__object,
-.vm-context-scene--teaching.vm-context-scene--level-8 .vm-context-scene__object,
-.vm-context-scene--teaching.vm-context-scene--level-9 .vm-context-scene__object {
-  opacity: 0.14;
-}
-
-.vm-context-scene--fallback {
-  right: 0.2rem;
-  bottom: 3.6rem;
-  width: min(34%, 19rem);
-  height: min(42%, 15rem);
-}
-
-.vm-context-scene--fallback .vm-context-scene__motif {
-  opacity: 0.9;
-}
-
-.vm-context-scene--teaching.vm-context-scene--fallback .vm-context-scene__motif {
-  background:
-    radial-gradient(circle at 22% 28%, rgba(38, 183, 255, 0.34) 0 3px, transparent 4px),
-    radial-gradient(circle at 72% 30%, rgba(253, 231, 0, 0.44) 0 4px, transparent 5px),
-    radial-gradient(circle at 46% 74%, rgba(51, 51, 51, 0.22) 0 2px, transparent 3px),
-    linear-gradient(32deg, transparent 0 31%, rgba(38, 183, 255, 0.2) 32% 33%, transparent 34% 100%),
-    linear-gradient(142deg, transparent 0 48%, rgba(51, 51, 51, 0.14) 49% 50%, transparent 51% 100%),
-    repeating-linear-gradient(90deg, rgba(38, 183, 255, 0.08) 0 1px, transparent 1px 28px);
-  border-right: 2px solid rgba(38, 183, 255, 0.14);
-  border-bottom: 2px solid rgba(253, 231, 0, 0.16);
-  border-radius: 2rem 0 1.25rem 0;
-}
-
-.vm-context-scene--hidden .vm-context-scene__motif {
-  background:
-    radial-gradient(circle at 64% 34%, rgba(38, 183, 255, 0.8) 0 2px, transparent 3px),
-    radial-gradient(circle at 82% 48%, rgba(51, 51, 51, 0.28) 0 2px, transparent 3px),
-    repeating-linear-gradient(90deg, transparent 0 14px, rgba(38, 183, 255, 0.2) 15px 16px);
-}
-
-.vm-context-scene--eliminate .vm-context-scene__motif,
-.vm-context-scene--transfer .vm-context-scene__motif {
-  background:
-    linear-gradient(0deg, transparent 43%, rgba(51, 51, 51, 0.22) 44%, transparent 46%),
-    linear-gradient(90deg, transparent 34%, rgba(38, 183, 255, 0.24) 35%, transparent 37%),
-    radial-gradient(circle at 76% 38%, rgba(253, 231, 0, 0.7) 0 3px, transparent 4px);
-}
-
-.vm-context-scene--rebuild .vm-context-scene__motif {
-  background:
-    conic-gradient(from 35deg at 72% 48%, rgba(38, 183, 255, 0.22), transparent 25%, rgba(253, 231, 0, 0.34) 26%, transparent 43%),
-    radial-gradient(circle at 88% 36%, rgba(51, 51, 51, 0.18) 0 2px, transparent 3px);
-}
-
-.vm-character-feedback {
-  position: absolute;
-  z-index: 5;
-  pointer-events: none;
-  user-select: none;
-  transform-origin: bottom center;
-}
-
-.vm-character-feedback--intro {
-  right: 0.75rem;
-  bottom: 0.55rem;
-}
-
-.vm-character-feedback--teaching {
-  right: 0.75rem;
-  bottom: 4.1rem;
-}
-
-.vm-character-feedback__asset {
-  display: block;
-  width: auto;
-  height: clamp(9.4rem, 15vw, 13rem);
-  object-fit: contain;
-  filter: drop-shadow(0 14px 20px rgba(51, 51, 51, 0.12));
-}
-
-.vm-character-feedback--intro .vm-character-feedback__asset {
-  height: clamp(11.8rem, 18vw, 16rem);
-}
-
-.vm-character-feedback--thinking {
-  animation: vm-character-thinking-in 340ms var(--motion-ease) both, vm-character-float 4.8s ease-in-out 420ms infinite;
-}
-
-.vm-character-feedback--correct {
-  animation: vm-character-correct-in 720ms var(--motion-ease) both;
-}
-
-.vm-character-feedback--retry {
-  animation: vm-character-retry-in 360ms var(--motion-ease) both;
-}
-
-.vm-character-feedback__stars {
-  position: absolute;
-  inset: -1.1rem -0.4rem auto auto;
-  width: 4rem;
-  height: 3.2rem;
-}
-
-.vm-character-feedback__star {
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  object-fit: contain;
-  opacity: 0;
-  animation: vm-feedback-star 760ms var(--motion-ease) both;
-}
-
-.vm-character-feedback__star--1 {
-  right: 0.1rem;
-  top: 1.1rem;
-}
-
-.vm-character-feedback__star--2 {
-  right: 1.45rem;
-  top: 0.2rem;
-  animation-delay: 80ms;
-}
-
-.vm-character-feedback__star--3 {
-  right: 2.65rem;
-  top: 1.5rem;
-  animation-delay: 130ms;
-}
-
-.vm-model-preview {
-  width: 100%;
-  height: 100%;
-  padding: 0.25rem;
-}
-
-.vm-model-preview__svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.vm-preview-group {
-  animation: vm-preview-enter 520ms var(--motion-ease) both;
-}
-
-.vm-preview-unit {
-  fill: rgba(255, 255, 255, 0.92);
-  stroke: rgba(51, 51, 51, 0.5);
-  stroke-width: 2;
-}
-
-.vm-preview-unit--active {
-  fill: rgba(253, 231, 0, 0.72);
-  stroke: rgba(51, 51, 51, 0.62);
-}
-
-.vm-preview-unit--ghost {
-  fill: rgba(234, 247, 255, 0.7);
-  stroke: rgba(38, 183, 255, 0.62);
-  stroke-dasharray: 5 5;
-}
-
-.vm-preview-baseline,
-.vm-preview-bracket,
-.vm-preview-connector,
-.vm-preview-match-rail,
-.vm-preview-cancel-line {
-  fill: none;
-  stroke-linecap: round;
-}
-
-.vm-preview-baseline {
-  stroke: rgba(51, 51, 51, 0.22);
-  stroke-width: 2;
-  stroke-dasharray: 4 5;
-}
-
-.vm-preview-bracket {
-  stroke: rgba(51, 51, 51, 0.45);
-  stroke-width: 3;
-}
-
-.vm-preview-bracket--difference,
-.vm-preview-connector {
-  stroke: rgba(38, 183, 255, 0.72);
-  stroke-width: 3;
-}
-
-.vm-preview-match-rail {
-  stroke: rgba(38, 183, 255, 0.38);
-  stroke-width: 8;
-}
-
-.vm-preview-cancel-line {
-  stroke: rgba(51, 51, 51, 0.5);
-  stroke-width: 3;
-}
-
-.vm-preview-whole-frame,
-.vm-preview-zone {
-  fill: transparent;
-  stroke: rgba(38, 183, 255, 0.45);
-  stroke-width: 2;
-}
-
-.vm-preview-transfer-path {
-  stroke-dasharray: 8 7;
-}
-
-.vm-preview-arrow-head {
-  fill: rgba(38, 183, 255, 0.72);
 }
 
 .vm-intro-motif {
@@ -787,31 +437,31 @@ button:focus-visible {
   bottom: 2rem;
 }
 
-.vm-intro-card--story-scene .vm-intro-hero {
-  display: none;
-}
-
-.vm-theme--build,
-.vm-theme--compare,
-.vm-theme--unit-rate {
+.vm-theme--game {
   --theme-accent: #26B7FF;
   --theme-soft: rgba(38, 183, 255, 0.13);
 }
 
-.vm-theme--part-whole,
-.vm-theme--scale,
-.vm-theme--rebuild {
+.vm-theme--recipe,
+.vm-theme--smoothie {
   --theme-accent: #FDE700;
   --theme-soft: rgba(253, 231, 0, 0.2);
 }
 
-.vm-theme--algebra,
-.vm-theme--transfer {
+.vm-theme--school {
+  --theme-accent: #26B7FF;
+  --theme-soft: rgba(38, 183, 255, 0.1);
+}
+
+.vm-theme--shopping,
+.vm-theme--tickets,
+.vm-theme--money {
   --theme-accent: #333333;
   --theme-soft: rgba(51, 51, 51, 0.08);
 }
 
-.vm-theme--hidden,
+.vm-theme--candy,
+.vm-theme--cards,
 .vm-theme--logic {
   --theme-accent: #26B7FF;
   --theme-soft: rgba(38, 183, 255, 0.09);
@@ -875,17 +525,9 @@ button:focus-visible {
   isolation: isolate;
 }
 
-.vm-model-shell > :not(.vm-step-layer):not(.vm-context-scene):not(.vm-character-feedback) {
+.vm-model-shell > :not(.vm-step-layer) {
   position: relative;
   z-index: 2;
-}
-
-.vm-model-shell > .vm-context-scene {
-  z-index: 0;
-}
-
-.vm-model-shell > .vm-character-feedback {
-  z-index: 5;
 }
 
 .vm-model-shell--discover {
@@ -900,51 +542,30 @@ button:focus-visible {
   box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(38, 183, 255, 0.26);
 }
 
-.vm-model-shell svg g[id*="unit"],
-.vm-model-shell svg g[id*="ratio"],
-.vm-model-shell svg g[id*="token"],
-.vm-model-shell svg g[id*="rebuild"],
-.vm-model-shell svg g[id*="pct"] {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: vm-math-unit-reveal 260ms var(--motion-ease) both;
-}
-
-.vm-model-shell svg g[id$="-1"],
-.vm-model-shell svg g[id$="-4"],
-.vm-model-shell svg g[id$="-7"] {
-  animation-delay: 45ms;
-}
-
-.vm-model-shell svg g[id$="-2"],
-.vm-model-shell svg g[id$="-5"],
-.vm-model-shell svg g[id$="-8"] {
-  animation-delay: 90ms;
-}
-
-.vm-model-shell svg g[id$="-3"],
-.vm-model-shell svg g[id$="-6"],
-.vm-model-shell svg g[id$="-9"] {
-  animation-delay: 135ms;
-}
-
-.vm-model-shell svg #take-away-arrow-indicator,
-.vm-model-shell svg #diff-guideline,
-.vm-model-shell svg #final-answer-banner {
-  animation: vm-math-relation-reveal 360ms var(--motion-ease) both;
-}
-
-.vm-model-shell--discover svg g[id*="unit"] rect[fill*="234, 247, 255"],
-.vm-model-shell--discover svg g[id*="unit"] rect[stroke-dasharray],
-.vm-model-shell--discover svg g[id*="ratio"] rect[stroke-dasharray] {
-  animation: vm-math-ghost-emphasis 520ms var(--motion-ease) both;
-}
-
 .vm-step-layer {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
+}
+
+.vm-low-teaching-object {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 2;
+  width: clamp(8.75rem, 15vw, 13.75rem);
+  height: clamp(8.75rem, 15vw, 13.75rem);
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+.vm-low-teaching-object img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .vm-context-badge {
@@ -957,14 +578,6 @@ button:focus-visible {
   background: rgba(234, 247, 255, 0.72);
   border: 1px solid var(--border-blue-soft);
   opacity: 0.78;
-}
-
-.vm-context-badge--math {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0.3rem;
-  padding: 0.7rem;
 }
 
 .vm-step-layer--model .vm-context-badge,
@@ -982,25 +595,6 @@ button:focus-visible {
 .vm-context-badge__accent {
   position: absolute;
   object-fit: contain;
-}
-
-.vm-context-badge__unit {
-  border-radius: 0.38rem;
-  border: 1.5px solid rgba(38, 183, 255, 0.55);
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.vm-context-badge__unit:nth-child(2) {
-  background: rgba(253, 231, 0, 0.46);
-  border-color: rgba(51, 51, 51, 0.28);
-}
-
-.vm-context-badge__path {
-  grid-column: 1 / 3;
-  align-self: center;
-  height: 0.35rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(38, 183, 255, 0.7), rgba(253, 231, 0, 0.7));
 }
 
 .vm-context-badge__asset {
@@ -1165,6 +759,24 @@ button:focus-visible {
     padding-top: 5.75rem;
   }
 
+  .vm-intro-card--low-scene {
+    padding: 1.5rem;
+  }
+
+  .vm-intro-card--low-scene .vm-intro-content,
+  .vm-intro-card--low-scene .space-y-4,
+  .vm-intro-card--low-scene .space-y-2\.5 {
+    max-width: 100%;
+  }
+
+  .vm-low-intro-scene {
+    display: none;
+  }
+
+  .vm-low-teaching-object {
+    display: none;
+  }
+
   .vm-intro-hero {
     left: 1.25rem !important;
     right: auto !important;
@@ -1184,47 +796,6 @@ button:focus-visible {
     height: 2.4rem;
   }
 
-  .vm-context-scene__motif {
-    display: none;
-  }
-
-  .vm-context-scene--intro {
-    right: 0.65rem;
-    bottom: 0.55rem;
-    width: 8rem;
-    height: 6.75rem;
-    opacity: 0.9;
-  }
-
-  .vm-context-scene--intro .vm-context-scene__character {
-    display: block;
-    right: 0;
-    height: 5.9rem;
-  }
-
-  .vm-context-scene--intro .vm-context-scene__object {
-    right: 4.1rem;
-    bottom: 0.2rem;
-    width: 3.5rem;
-    opacity: 0.72;
-  }
-
-  .vm-character-feedback--teaching {
-    display: none;
-  }
-
-  .vm-context-scene--teaching {
-    right: -0.25rem;
-    bottom: 0.1rem;
-    width: 6.6rem;
-    height: 5.4rem;
-  }
-
-  .vm-context-scene--teaching .vm-context-scene__object {
-    width: 5.4rem;
-    opacity: 0.14;
-  }
-
   .vm-equation-strip {
     max-width: calc(100% - 2rem);
   }
@@ -1234,10 +805,14 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 520px) {
-  .vm-context-scene--intro .vm-context-scene__character,
-  .vm-context-scene--teaching {
-    display: none;
+@keyframes vm-low-scene-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -1320,111 +895,6 @@ button:focus-visible {
   }
 }
 
-@keyframes vm-preview-enter {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes vm-character-thinking-in {
-  from {
-    opacity: 0;
-    transform: translateY(7px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes vm-character-float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2px);
-  }
-}
-
-@keyframes vm-character-correct-in {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0.92);
-  }
-  48% {
-    opacity: 1;
-    transform: translateY(-5px) scale(1.04);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes vm-character-retry-in {
-  from {
-    opacity: 0;
-    transform: translateX(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes vm-feedback-star {
-  0% {
-    opacity: 0;
-    transform: translateY(8px) scale(0.72);
-  }
-  35% {
-    opacity: 0.95;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-12px) scale(1);
-  }
-}
-
-@keyframes vm-math-unit-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(6px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes vm-math-relation-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes vm-math-ghost-emphasis {
-  0% {
-    opacity: 0.45;
-  }
-  48% {
-    opacity: 0.86;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 @keyframes vm-node-activate {
   0% {
     opacity: 0;
@@ -1433,30 +903,5 @@ button:focus-visible {
   100% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vm-enter,
-  .vm-soft-pop,
-  .vm-float-playful,
-  .vm-float-structured,
-  .vm-float-mastery,
-  .vm-preview-group,
-  .vm-step-layer--discover .vm-annotation-lines__line,
-  .vm-step-layer--calculate .vm-annotation-lines__line,
-  .vm-step-layer--answer .vm-annotation-lines__line,
-  .vm-equation-strip,
-  .vm-character-feedback,
-  .vm-character-feedback__star,
-  .vm-model-shell svg g[id*="unit"],
-  .vm-model-shell svg g[id*="ratio"],
-  .vm-model-shell svg g[id*="token"],
-  .vm-model-shell svg g[id*="rebuild"],
-  .vm-model-shell svg g[id*="pct"],
-  .vm-model-shell svg #take-away-arrow-indicator,
-  .vm-model-shell svg #diff-guideline,
-  .vm-model-shell svg #final-answer-banner {
-    animation: none !important;
   }
 }
